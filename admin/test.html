@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechFlow Admin Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #2563eb;
+            --secondary-blue: #3b82f6;
+            --light-blue: #dbeafe;
+            --dark-blue: #1e40af;
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        /* Neumorphism Effects */
+        .neuro-card {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            box-shadow: 
+                8px 8px 16px rgba(148, 163, 184, 0.15),
+                -8px -8px 16px rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .neuro-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                12px 12px 20px rgba(148, 163, 184, 0.2),
+                -12px -12px 20px rgba(255, 255, 255, 0.8);
+        }
+
+        /* Glassmorphism Effects */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(16px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            height: 100vh;
+            background: var(--bg-secondary);
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 1000;
+            border-right: 1px solid var(--border-color);
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+        }
+
+        .sidebar.collapsed {
+            width: 80px;
+        }
+
+        .sidebar-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .sidebar-header .logo {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+
+        .nav-item {
+            margin: 8px 16px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item:hover {
+            background: var(--light-blue);
+            transform: translateX(4px);
+        }
+
+        .nav-item.active {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+        }
+
+        .nav-item.active:hover {
+            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item.active .nav-link {
+            color: white;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 280px;
+            transition: margin-left 0.3s ease;
+        }
+
+        .main-content.expanded {
+            margin-left: 80px;
+        }
+
+        /* Top Navbar */
+        .top-navbar {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .search-box {
+            position: relative;
+            max-width: 400px;
+            flex: 1;
+        }
+
+        .search-box input {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            padding: 10px 20px 10px 45px;
+            width: 100%;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .search-box .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+
+        .navbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .action-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-primary);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .action-btn:hover {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            transform: scale(1.05);
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            width: 18px;
+            height: 18px;
+            background: #ef4444;
+            border-radius: 50%;
+            color: white;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .profile-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* Dashboard Content */
+        .dashboard-content {
+            padding: 2rem;
+        }
+
+        .page-header {
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .page-subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        /* KPI Cards */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .kpi-card {
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kpi-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .kpi-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .kpi-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .kpi-change {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .kpi-change.positive {
+            color: #059669;
+        }
+
+        .kpi-change.negative {
+            color: #dc2626;
+        }
+
+        /* Charts */
+        .chart-container {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 2rem;
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .chart-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .chart-filter {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-size: 0.85rem;
+        }
+
+        .chart-placeholder {
+            height: 300px;
+            background: linear-gradient(135deg, var(--light-blue), rgba(59, 130, 246, 0.1));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-blue);
+            font-weight: 500;
+        }
+
+        /* Tables */
+        .table-container {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 2rem;
+        }
+
+        .table-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .table-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .table-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            border: none;
+            border-radius: 8px;
+            padding: 8px 16px;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .custom-table th {
+            background: var(--bg-primary);
+            padding: 1rem 1.5rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .custom-table td {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: middle;
+        }
+
+        .custom-table tr:hover {
+            background: var(--bg-primary);
+        }
+
+        .employee-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            margin-right: 12px;
+        }
+
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .status-active {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status-inactive {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .status-pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        /* Kanban Board */
+        .kanban-board {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .kanban-column {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .kanban-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .kanban-title {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .kanban-count {
+            background: var(--bg-primary);
+            border-radius: 50px;
+            padding: 4px 8px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .kanban-card {
+            background: var(--bg-primary);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary-blue);
+            cursor: move;
+            transition: all 0.3s ease;
+        }
+
+        .kanban-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .card-title {
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .top-navbar {
+                padding: 1rem;
+            }
+            
+            .dashboard-content {
+                padding: 1rem;
+            }
+            
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .kanban-board {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Dark mode toggle */
+        .theme-toggle {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .theme-option {
+            padding: 6px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .theme-option.active {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        /* Animations */
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .animate-slide-in {
+            animation: slideInRight 0.5s ease-out;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-cube"></i>
+            </div>
+            <div class="company-info" id="companyInfo">
+                <h5 class="mb-0">TechFlow</h5>
+                <small class="text-muted">Admin Dashboard</small>
+            </div>
+            <button class="btn btn-sm ms-auto" id="sidebarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav mt-3">
+            <div class="nav-item active" onclick="showPage('dashboard')">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+            </div>
+            <div class="nav-item" onclick="showPage('employees')">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-users"></i>
+                    <span class="nav-text">Employees</span>
+                </a>
+            </div>
+            <div class="nav-item" onclick="showPage('clients')">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-user-tie"></i>
+                    <span class="nav-text">Clients</span>
+                </a>
+            </div>
+            <div class="nav-item" onclick="showPage('projects')">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-project-diagram"></i>
+                    <span class="nav-text">Projects</span>
+                </a>
+            </div>
+            <div class="nav-item" onclick="showPage('tasks')">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-tasks"></i>
+                    <span class="nav-text">Tasks</span>
+                </a>
+            </div>
+            <div class="nav-item" onclick="showPage('finance')">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-dollar-sign"></i>
+                    <span class="nav-text">Finance</span>
+                </a>
+            </div>
+            <div class="nav-item" onclick="showPage('support')">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-headset"></i>
+                    <span class="nav-text">Support</span>
+                </a>
+            </div>
+            <div class="nav-item" onclick="showPage('reports')">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-chart-bar"></i>
+                    <span class="nav-text">Reports</span>
+                </a>
+            </div>
+            <div class="nav-item" onclick="showPage('settings')">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-cog"></i>
+                    <span class="nav-text">Settings</span>
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <!-- Top Navbar -->
+        <div class="top-navbar">
+            <div class="search-box">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" placeholder="Search anything...">
+            </div>
+            
+            <div class="navbar-actions">
+                <div class="theme-toggle" onclick="toggleTheme()">
+                    <div class="theme-option active">Light</div>
+                    <div class="theme-option">Dark</div>
+                </div>
+                
+                <button class="action-btn" title="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">5</span>
+                </button>
+                
+                <button class="action-btn" title="Messages">
+                    <i class="fas fa-envelope"></i>
+                    <span class="notification-badge">2</span>
+                </button>
+                
+                <button class="action-btn" title="Settings">
+                    <i class="fas fa-cog"></i>
+                </button>
+                
+                <div class="profile-avatar" title="Profile">
+                    <i class="fas fa-user"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content" id="pageContent">
+            <!-- Dashboard Page -->
+            <div id="dashboard" class="page-content animate-slide-in">
+                <div class="page-header">
+                    <h1 class="page-title">Dashboard</h1>
+                    <p class="page-subtitle">Welcome back! Here's what's happening with your projects today.</p>
+                </div>
+
+                <!-- KPI Cards -->
+                <div class="kpi-grid">
+                    <div class="kpi-card neuro-card">
+                        <div class="kpi-icon" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <div class="kpi-value">24</div>
+                        <div class="kpi-label">Active Projects</div>
+                        <div class="kpi-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>12% from last month</span>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card neuro-card">
+                        <div class="kpi-icon" style="background: linear-gradient(135deg, #10b981, #059669);">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="kpi-value">$284,500</div>
+                        <div class="kpi-label">Monthly Revenue</div>
+                        <div class="kpi-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>8% from last month</span>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card neuro-card">
+                        <div class="kpi-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="kpi-value">156</div>
+                        <div class="kpi-label">Active Clients</div>
+                        <div class="kpi-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>5% from last month</span>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card neuro-card">
+                        <div class="kpi-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="kpi-value">89%</div>
+                        <div class="kpi-label">Project Success Rate</div>
+                        <div class="kpi-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>3% from last month</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Row -->
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="chart-container">
+                            <div class="chart-header">
+                                <h3 class="chart-title">Revenue Overview</h3>
+                                <select class="chart-filter">
+                                    <option>Last 12 Months</option>
+                                    <option>Last 6 Months</option>
+                                    <option>Last 3 Months</option>
+                                </select>
+                            </div>
+                            <div class="chart-placeholder">
+                                <i class="fas fa-chart-line fa-3x"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="chart-container">
+                            <div class="chart-header">
+                                <h3 class="chart-title">Project Status</h3>
+                            </div>
+                            <div class="chart-placeholder">
+                                <i class="fas fa-chart-pie fa-3x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activities & Quick Actions -->
+                <div class="row mt-4">
+                    <div class="col-lg-8">
+                        <div class="table-container">
+                            <div class="table-header">
+                                <h3 class="table-title">Recent Projects</h3>
+                                <button class="btn-primary">
+                                    <i class="fas fa-plus"></i> Add Project
+                                </button>
+                            </div>
+                            <table class="custom-table">
+                                <thead>
+                                    <tr>
+                                        <th>Project</th>
+                                        <th>Client</th>
+                                        <th>Status</th>
+                                        <th>Progress</th>
+                                        <th>Due Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="employee-avatar">P</div>
+                                                <div>
+                                                    <div class="fw-medium">E-commerce Platform</div>
+                                                    <small class="text-muted">Web Development</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>TechCorp Inc.</td>
+                                        <td><span class="status-badge status-active">In Progress</span></td>
+                                        <td>
+                                            <div class="progress" style="height: 6px;">
+                                                <div class="progress-bar" role="progressbar" style="width: 75%; background: var(--primary-blue);"></div>
+                                            </div>
+                                            <small class="text-muted">75%</small>
+                                        </td>
+                                        <td>Dec 15, 2024</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="employee-avatar" style="background: linear-gradient(135deg, #10b981, #059669);">M</div>
+                                                <div>
+                                                    <div class="fw-medium">Mobile Banking App</div>
+                                                    <small class="text-muted">Mobile Development</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>SecureBank</td>
+                                        <td><span class="status-badge status-pending">Review</span></td>
+                                        <td>
+                                            <div class="progress" style="height: 6px;">
+                                                <div class="progress-bar" role="progressbar" style="width: 90%; background: var(--secondary-blue);"></div>
+                                            </div>
+                                            <small class="text-muted">90%</small>
+                                        </td>
+                                        <td>Nov 28, 2024</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="employee-avatar" style="background: linear-gradient(135deg, #f59e0b, #d97706);">D</div>
+                                                <div>
+                                                    <div class="fw-medium">Dashboard Analytics</div>
+                                                    <small class="text-muted">Data Visualization</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>DataFlow Ltd.</td>
+                                        <td><span class="status-badge status-active">In Progress</span></td>
+                                        <td>
+                                            <div class="progress" style="height: 6px;">
+                                                <div class="progress-bar" role="progressbar" style="width: 45%; background: var(--primary-blue);"></div>
+                                            </div>
+                                            <small class="text-muted">45%</small>
+                                        </td>
+                                        <td>Jan 10, 2025</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="neuro-card p-4">
+                            <h4 class="mb-4">Quick Actions</h4>
+                            <div class="d-grid gap-3">
+                                <button class="btn-primary d-flex align-items-center justify-content-center gap-2" onclick="showPage('projects')">
+                                    <i class="fas fa-plus"></i>
+                                    Create New Project
+                                </button>
+                                <button class="btn-primary d-flex align-items-center justify-content-center gap-2" onclick="showPage('employees')">
+                                    <i class="fas fa-user-plus"></i>
+                                    Add Employee
+                                </button>
+                                <button class="btn-primary d-flex align-items-center justify-content-center gap-2" onclick="showPage('finance')">
+                                    <i class="fas fa-file-invoice"></i>
+                                    Generate Invoice
+                                </button>
+                                <button class="btn-primary d-flex align-items-center justify-content-center gap-2" onclick="showPage('clients')">
+                                    <i class="fas fa-handshake"></i>
+                                    Add New Client
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Employees Page -->
+            <div id="employees" class="page-content" style="display: none;">
+                <div class="page-header">
+                    <h1 class="page-title">Employee Management</h1>
+                    <p class="page-subtitle">Manage your team members, roles, and performance tracking.</p>
+                </div>
+
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3 class="table-title">All Employees</h3>
+                        <div class="table-actions">
+                            <button class="btn-primary">
+                                <i class="fas fa-download"></i> Export
+                            </button>
+                            <button class="btn-primary">
+                                <i class="fas fa-plus"></i> Add Employee
+                            </button>
+                        </div>
+                    </div>
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th>Employee</th>
+                                <th>Role</th>
+                                <th>Department</th>
+                                <th>Status</th>
+                                <th>Performance</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="employee-avatar">JS</div>
+                                        <div>
+                                            <div class="fw-medium">John Smith</div>
+                                            <small class="text-muted">john.smith@company.com</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Senior Developer</td>
+                                <td>Engineering</td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div class="progress" style="height: 6px; width: 80px;">
+                                            <div class="progress-bar" style="width: 92%; background: #10b981;"></div>
+                                        </div>
+                                        <small>92%</small>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-primary me-2">Edit</button>
+                                    <button class="btn btn-sm btn-outline-danger">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="employee-avatar" style="background: linear-gradient(135deg, #ec4899, #db2777);">EM</div>
+                                        <div>
+                                            <div class="fw-medium">Emily Martinez</div>
+                                            <small class="text-muted">emily.martinez@company.com</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>UI/UX Designer</td>
+                                <td>Design</td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div class="progress" style="height: 6px; width: 80px;">
+                                            <div class="progress-bar" style="width: 88%; background: #10b981;"></div>
+                                        </div>
+                                        <small>88%</small>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-primary me-2">Edit</button>
+                                    <button class="btn btn-sm btn-outline-danger">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="employee-avatar" style="background: linear-gradient(135deg, #10b981, #059669);">MJ</div>
+                                        <div>
+                                            <div class="fw-medium">Michael Johnson</div>
+                                            <small class="text-muted">michael.johnson@company.com</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Project Manager</td>
+                                <td>Management</td>
+                                <td><span class="status-badge status-pending">On Leave</span></td>
+                                <td>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div class="progress" style="height: 6px; width: 80px;">
+                                            <div class="progress-bar" style="width: 85%; background: #10b981;"></div>
+                                        </div>
+                                        <small>85%</small>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-primary me-2">Edit</button>
+                                    <button class="btn btn-sm btn-outline-danger">Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Tasks Page -->
+            <div id="tasks" class="page-content" style="display: none;">
+                <div class="page-header">
+                    <h1 class="page-title">Task Management</h1>
+                    <p class="page-subtitle">Track and manage project tasks with our Kanban board.</p>
+                </div>
+
+                <div class="kanban-board">
+                    <div class="kanban-column">
+                        <div class="kanban-header">
+                            <div class="kanban-title">To Do</div>
+                            <div class="kanban-count">4</div>
+                        </div>
+                        <div class="kanban-card">
+                            <div class="card-title">Design user authentication flow</div>
+                            <div class="card-meta">
+                                <span>High Priority</span>
+                                <span>Due: Nov 30</span>
+                            </div>
+                        </div>
+                        <div class="kanban-card">
+                            <div class="card-title">Setup database schema</div>
+                            <div class="card-meta">
+                                <span>Medium Priority</span>
+                                <span>Due: Dec 5</span>
+                            </div>
+                        </div>
+                        <div class="kanban-card">
+                            <div class="card-title">Create wireframes</div>
+                            <div class="card-meta">
+                                <span>Low Priority</span>
+                                <span>Due: Dec 10</span>
+                            </div>
+                        </div>
+                        <div class="kanban-card">
+                            <div class="card-title">Research competitor apps</div>
+                            <div class="card-meta">
+                                <span>Low Priority</span>
+                                <span>Due: Dec 15</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="kanban-column">
+                        <div class="kanban-header">
+                            <div class="kanban-title">In Progress</div>
+                            <div class="kanban-count">3</div>
+                        </div>
+                        <div class="kanban-card">
+                            <div class="card-title">Implement user dashboard</div>
+                            <div class="card-meta">
+                                <span>High Priority</span>
+                                <span>Due: Nov 28</span>
+                            </div>
+                        </div>
+                        <div class="kanban-card">
+                            <div class="card-title">API integration testing</div>
+                            <div class="card-meta">
+                                <span>Medium Priority</span>
+                                <span>Due: Dec 2</span>
+                            </div>
+                        </div>
+                        <div class="kanban-card">
+                            <div class="card-title">Mobile responsive design</div>
+                            <div class="card-meta">
+                                <span>High Priority</span>
+                                <span>Due: Dec 8</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="kanban-column">
+                        <div class="kanban-header">
+                            <div class="kanban-title">Review</div>
+                            <div class="kanban-count">2</div>
+                        </div>
+                        <div class="kanban-card">
+                            <div class="card-title">Payment gateway integration</div>
+                            <div class="card-meta">
+                                <span>High Priority</span>
+                                <span>Due: Nov 25</span>
+                            </div>
+                        </div>
+                        <div class="kanban-card">
+                            <div class="card-title">Security audit report</div>
+                            <div class="card-meta">
+                                <span>Medium Priority</span>
+                                <span>Due: Nov 27</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="kanban-column">
+                        <div class="kanban-header">
+                            <div class="kanban-title">Completed</div>
+                            <div class="kanban-count">5</div>
+                        </div>
+                        <div class="kanban-card">
+                            <div class="card-title">User registration system</div>
+                            <div class="card-meta">
+                                <span>Completed</span>
+                                <span>Nov 20</span>
+                            </div>
+                        </div>
+                        <div class="kanban-card">
+                            <div class="card-title">Email notification setup</div>
+                            <div class="card-meta">
+                                <span>Completed</span>
+                                <span>Nov 18</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Finance Page -->
+            <div id="finance" class="page-content" style="display: none;">
+                <div class="page-header">
+                    <h1 class="page-title">Finance & Billing</h1>
+                    <p class="page-subtitle">Manage invoices, expenses, and financial reports.</p>
+                </div>
+
+                <!-- Finance KPIs -->
+                <div class="kpi-grid mb-4">
+                    <div class="kpi-card neuro-card">
+                        <div class="kpi-icon" style="background: linear-gradient(135deg, #10b981, #059669);">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="kpi-value">$425,800</div>
+                        <div class="kpi-label">Total Revenue</div>
+                        <div class="kpi-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>15% from last month</span>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card neuro-card">
+                        <div class="kpi-icon" style="background: linear-gradient(135deg, #ef4444, #dc2626);">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <div class="kpi-value">$89,200</div>
+                        <div class="kpi-label">Total Expenses</div>
+                        <div class="kpi-change negative">
+                            <i class="fas fa-arrow-down"></i>
+                            <span>5% from last month</span>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card neuro-card">
+                        <div class="kpi-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                            <i class="fas fa-file-invoice"></i>
+                        </div>
+                        <div class="kpi-value">28</div>
+                        <div class="kpi-label">Pending Invoices</div>
+                        <div class="kpi-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>8 new this week</span>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card neuro-card">
+                        <div class="kpi-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="kpi-value">$336,600</div>
+                        <div class="kpi-label">Net Profit</div>
+                        <div class="kpi-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>22% from last month</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Invoices Table -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3 class="table-title">Recent Invoices</h3>
+                        <div class="table-actions">
+                            <button class="btn-primary">
+                                <i class="fas fa-plus"></i> Create Invoice
+                            </button>
+                        </div>
+                    </div>
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th>Invoice ID</th>
+                                <th>Client</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Due Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#INV-2024-001</td>
+                                <td>TechCorp Inc.</td>
+                                <td>$45,000</td>
+                                <td><span class="status-badge status-active">Paid</span></td>
+                                <td>Nov 15, 2024</td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-primary me-2">View</button>
+                                    <button class="btn btn-sm btn-outline-secondary">Download</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#INV-2024-002</td>
+                                <td>SecureBank</td>
+                                <td>$32,500</td>
+                                <td><span class="status-badge status-pending">Pending</span></td>
+                                <td>Dec 1, 2024</td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-primary me-2">View</button>
+                                    <button class="btn btn-sm btn-outline-secondary">Send</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#INV-2024-003</td>
+                                <td>DataFlow Ltd.</td>
+                                <td>$28,750</td>
+                                <td><span class="status-badge status-inactive">Overdue</span></td>
+                                <td>Nov 20, 2024</td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-danger me-2">Reminder</button>
+                                    <button class="btn btn-sm btn-outline-primary">View</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Other Pages (Placeholders) -->
+            <div id="clients" class="page-content" style="display: none;">
+                <div class="page-header">
+                    <h1 class="page-title">Client Management</h1>
+                    <p class="page-subtitle">Manage your client relationships and project assignments.</p>
+                </div>
+                <div class="glass-card p-5 text-center">
+                    <i class="fas fa-user-tie fa-4x mb-3 text-primary"></i>
+                    <h3>Client Management Module</h3>
+                    <p class="text-muted">Coming soon - Comprehensive client management features</p>
+                </div>
+            </div>
+
+            <div id="projects" class="page-content" style="display: none;">
+                <div class="page-header">
+                    <h1 class="page-title">Project Management</h1>
+                    <p class="page-subtitle">Track project progress, timelines, and team assignments.</p>
+                </div>
+                <div class="glass-card p-5 text-center">
+                    <i class="fas fa-project-diagram fa-4x mb-3 text-primary"></i>
+                    <h3>Project Management Module</h3>
+                    <p class="text-muted">Coming soon - Advanced project tracking and management tools</p>
+                </div>
+            </div>
+
+            <div id="support" class="page-content" style="display: none;">
+                <div class="page-header">
+                    <h1 class="page-title">Support & Communication</h1>
+                    <p class="page-subtitle">Manage support tickets, team communication, and client requests.</p>
+                </div>
+                <div class="glass-card p-5 text-center">
+                    <i class="fas fa-headset fa-4x mb-3 text-primary"></i>
+                    <h3>Support Module</h3>
+                    <p class="text-muted">Coming soon - Integrated support and communication platform</p>
+                </div>
+            </div>
+
+            <div id="reports" class="page-content" style="display: none;">
+                <div class="page-header">
+                    <h1 class="page-title">Reports & Analytics</h1>
+                    <p class="page-subtitle">Generate detailed reports and analytics for your business insights.</p>
+                </div>
+                <div class="glass-card p-5 text-center">
+                    <i class="fas fa-chart-bar fa-4x mb-3 text-primary"></i>
+                    <h3>Reports & Analytics Module</h3>
+                    <p class="text-muted">Coming soon - Comprehensive reporting and analytics dashboard</p>
+                </div>
+            </div>
+
+            <div id="settings" class="page-content" style="display: none;">
+                <div class="page-header">
+                    <h1 class="page-title">Settings & Administration</h1>
+                    <p class="page-subtitle">Configure system settings, user permissions, and integrations.</p>
+                </div>
+                <div class="glass-card p-5 text-center">
+                    <i class="fas fa-cog fa-4x mb-3 text-primary"></i>
+                    <h3>Settings Module</h3>
+                    <p class="text-muted">Coming soon - System configuration and administration panel</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Global Variables
+        let sidebarCollapsed = false;
+        let darkMode = false;
+
+        // Initialize Dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeTooltips();
+            setupEventListeners();
+            animateKPICards();
+        });
+
+        // Setup Event Listeners
+        function setupEventListeners() {
+            // Sidebar toggle
+            document.getElementById('sidebarToggle').addEventListener('click', toggleSidebar);
+            
+            // Mobile menu toggle
+            if (window.innerWidth <= 768) {
+                document.addEventListener('click', function(e) {
+                    const sidebar = document.getElementById('sidebar');
+                    const mainContent = document.getElementById('mainContent');
+                    if (!sidebar.contains(e.target) && sidebar.classList.contains('active')) {
+                        sidebar.classList.remove('active');
+                    }
+                });
+            }
+
+            // Search functionality
+            const searchInput = document.querySelector('.search-box input');
+            searchInput.addEventListener('input', function(e) {
+                handleSearch(e.target.value);
+            });
+
+            // Window resize handler
+            window.addEventListener('resize', handleResize);
+        }
+
+        // Toggle Sidebar
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('mainContent');
+            const companyInfo = document.getElementById('companyInfo');
+            const navTexts = document.querySelectorAll('.nav-text');
+
+            sidebarCollapsed = !sidebarCollapsed;
+
+            if (sidebarCollapsed) {
+                sidebar.classList.add('collapsed');
+                mainContent.classList.add('expanded');
+                companyInfo.style.display = 'none';
+                navTexts.forEach(text => text.style.display = 'none');
+            } else {
+                sidebar.classList.remove('collapsed');
+                mainContent.classList.remove('expanded');
+                companyInfo.style.display = 'block';
+                navTexts.forEach(text => text.style.display = 'inline');
+            }
+        }
+
+        // Show Page Function
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => page.style.display = 'none');
+
+            // Show selected page
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.style.display = 'block';
+                targetPage.classList.add('animate-slide-in');
+                
+                // Remove animation class after animation completes
+                setTimeout(() => {
+                    targetPage.classList.remove('animate-slide-in');
+                }, 500);
+            }
+
+            // Update active nav item
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => item.classList.remove('active'));
+            
+            const activeNavItem = document.querySelector(`[onclick="showPage('${pageId}')"]`);
+            if (activeNavItem) {
+                activeNavItem.classList.add('active');
+            }
+
+            // Update page title in browser
+            const pageTitle = targetPage.querySelector('.page-title');
+            if (pageTitle) {
+                document.title = `TechFlow Admin - ${pageTitle.textContent}`;
+            }
+        }
+
+        // Toggle Theme Function
+        function toggleTheme() {
+            darkMode = !darkMode;
+            const body = document.body;
+            const themeOptions = document.querySelectorAll('.theme-option');
+
+            if (darkMode) {
+                body.classList.add('dark-mode');
+                themeOptions[0].classList.remove('active');
+                themeOptions[1].classList.add('active');
+                
+                // Update CSS custom properties for dark mode
+                document.documentElement.style.setProperty('--bg-primary', '#1e293b');
+                document.documentElement.style.setProperty('--bg-secondary', '#334155');
+                document.documentElement.style.setProperty('--text-primary', '#f8fafc');
+                document.documentElement.style.setProperty('--text-secondary', '#cbd5e1');
+                document.documentElement.style.setProperty('--border-color', '#475569');
+            } else {
+                body.classList.remove('dark-mode');
+                themeOptions[1].classList.remove('active');
+                themeOptions[0].classList.add('active');
+                
+                // Reset CSS custom properties for light mode
+                document.documentElement.style.setProperty('--bg-primary', '#f8fafc');
+                document.documentElement.style.setProperty('--bg-secondary', '#ffffff');
+                document.documentElement.style.setProperty('--text-primary', '#1e293b');
+                document.documentElement.style.setProperty('--text-secondary', '#64748b');
+                document.documentElement.style.setProperty('--border-color', '#e2e8f0');
+            }
+        }
+
+        // Search Handler
+        function handleSearch(query) {
+            if (query.length === 0) return;
+            
+            console.log('Searching for:', query);
+            // Implement search functionality here
+            // This could search across projects, employees, clients, etc.
+        }
+
+        // Handle Window Resize
+        function handleResize() {
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('mainContent');
+
+            if (window.innerWidth <= 768) {
+                sidebar.classList.remove('collapsed');
+                mainContent.classList.remove('expanded');
+                sidebarCollapsed = false;
+            }
+        }
+
+        // Initialize Tooltips
+        function initializeTooltips() {
+            const tooltipTriggerList = [].slice.call(document.querySelectorAll('[title]'));
+            tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+        }
+
+        // Animate KPI Cards
+        function animateKPICards() {
+            const kpiCards = document.querySelectorAll('.kpi-card');
+            kpiCards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+                card.classList.add('animate-slide-in');
+            });
+        }
+
+        // Simulate Real-time Data Updates
+        function updateKPIData() {
+            const kpiValues = document.querySelectorAll('.kpi-value');
+            kpiValues.forEach(value => {
+                const currentValue = parseInt(value.textContent.replace(/[^0-9]/g, ''));
+                const newValue = currentValue + Math.floor(Math.random() * 10) - 5;
+                
+                if (newValue > 0) {
+                    value.textContent = value.textContent.replace(/[0-9,]+/, newValue.toLocaleString());
+                }
+            });
+        }
+
+        // Update data every 30 seconds (simulation)
+        setInterval(updateKPIData, 30000);
+
+        // Kanban Drag and Drop (Simple Implementation)
+        function initializeKanban() {
+            const kanbanCards = document.querySelectorAll('.kanban-card');
+            const kanbanColumns = document.querySelectorAll('.kanban-column');
+
+            kanbanCards.forEach(card => {
+                card.draggable = true;
+                card.addEventListener('dragstart', handleDragStart);
+                card.addEventListener('dragend', handleDragEnd);
+            });
+
+            kanbanColumns.forEach(column => {
+                column.addEventListener('dragover', handleDragOver);
+                column.addEventListener('drop', handleDrop);
+            });
+        }
+
+        function handleDragStart(e) {
+            e.dataTransfer.setData('text/html', e.target.outerHTML);
+            e.dataTransfer.effectAllowed = 'move';
+            e.target.style.opacity = '0.5';
+        }
+
+        function handleDragEnd(e) {
+            e.target.style.opacity = '1';
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            const data = e.dataTransfer.getData('text/html');
+            const dropZone = e.target.closest('.kanban-column');
+            if (dropZone) {
+                dropZone.insertAdjacentHTML('beforeend', data);
+                updateKanbanCounts();
+            }
+        }
+
+        function updateKanbanCounts() {
+            const columns = document.querySelectorAll('.kanban-column');
+            columns.forEach(column => {
+                const count = column.querySelectorAll('.kanban-card').length;
+                const countElement = column.querySelector('.kanban-count');
+                if (countElement) {
+                    countElement.textContent = count;
+                }
+            });
+        }
+
+        // Initialize Kanban when tasks page is loaded
+        setTimeout(() => {
+            initializeKanban();
+        }, 1000);
+
+        // Progress Bar Animation
+        function animateProgressBars() {
+            const progressBars = document.querySelectorAll('.progress-bar');
+            progressBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.transition = 'width 1s ease-in-out';
+                    bar.style.width = width;
+                }, 100);
+            });
+        }
+
+        // Call progress bar animation when dashboard loads
+        setTimeout(animateProgressBars, 500);
+
+        // Notification System
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <div class="notification-content">
+                    <i class="fas fa-info-circle"></i>
+                    <span>${message}</span>
+                </div>
+                <button class="notification-close" onclick="this.parentElement.remove()">
+                    <i class="fas fa-times"></i>
+                </button>

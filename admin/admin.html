@@ -1,0 +1,2625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SoftCode Pro  Admin Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <div class="scp-admin-wrapper">
+    <nav class="scp-sidebar" id="scpSidebar" aria-label="Admin Sidebar">
+      <div class="scp-brand">
+        <i class="fa-solid fa-table-cells-large"></i>
+        <span>SoftCode Pro Admin</span>
+      </div>
+      <ul class="scp-nav" role="tablist">
+        <li class="scp-nav-item"><a href="#" class="scp-nav-link active" data-page="dashboard" aria-current="page"><span class="icon"><i class="fa-solid fa-gauge"></i></span><span class="label">Dashboard</span></a></li>
+        <li class="scp-nav-item"><a href="#" class="scp-nav-link" data-page="users"><span class="icon"><i class="fa-solid fa-user-tie"></i></span><span class="label">Employees</span></a></li>
+        <li class="scp-nav-item"><a href="#" class="scp-nav-link" data-page="clients"><span class="icon"><i class="fa-solid fa-handshake"></i></span><span class="label">Clients</span></a></li>
+        <li class="scp-nav-item"><a href="#" class="scp-nav-link" data-page="projects"><span class="icon"><i class="fa-solid fa-diagram-project"></i></span><span class="label">Projects</span></a></li>
+        <li class="scp-nav-item"><a href="#" class="scp-nav-link" data-page="tasks"><span class="icon"><i class="fa-solid fa-list-check"></i></span><span class="label">Tasks</span></a></li>
+        <li class="scp-nav-item"><a href="#" class="scp-nav-link" data-page="finance"><span class="icon"><i class="fa-solid fa-file-invoice-dollar"></i></span><span class="label">Finance</span></a></li>
+        <li class="scp-nav-item"><a href="#" class="scp-nav-link" data-page="client-payments"><span class="icon"><i class="fa-solid fa-credit-card"></i></span><span class="label">Client Payments</span></a></li>
+        <li class="scp-nav-item"><a href="#" class="scp-nav-link" data-page="employee-payments"><span class="icon"><i class="fa-solid fa-hand-holding-dollar"></i></span><span class="label">Employee Payments</span></a></li>
+        <li class="scp-nav-item"><a href="#" class="scp-nav-link" data-page="support"><span class="icon"><i class="fa-solid fa-life-ring"></i></span><span class="label">Support</span></a></li>
+        <li class="scp-nav-item"><a href="#" class="scp-nav-link" data-page="reports"><span class="icon"><i class="fa-solid fa-chart-line"></i></span><span class="label">Reports</span></a></li>
+        <li class="scp-nav-item"><a href="#" class="scp-nav-link" data-page="files"><span class="icon"><i class="fa-solid fa-folder-open"></i></span><span class="label">Files</span></a></li>
+        <li class="scp-nav-item"><a href="#" class="scp-nav-link" data-page="notifications"><span class="icon"><i class="fa-solid fa-bell"></i></span><span class="label">Notifications</span></a></li>
+        <li class="scp-nav-item"><a href="#" class="scp-nav-link" data-page="settings"><span class="icon"><i class="fa-solid fa-gear"></i></span><span class="label">Settings</span></a></li>
+      </ul>
+    </nav>
+
+    <main class="scp-main" id="scpMain">
+      <header class="scp-topbar" role="banner">
+        <div class="left">
+          <button id="sidebarToggle" class="sq-btn" aria-label="Toggle sidebar"><i class="fa-solid fa-bars"></i></button>
+          <h1 id="pageTitle" class="h5 m-0">Dashboard</h1>
+        </div>
+        <div class="scp-search">
+          <i class="fa-solid fa-magnifying-glass icon" aria-hidden="true"></i>
+          <input id="globalSearch" type="search" class="form-control" placeholder="Search projects, users, invoices..." aria-label="Search">
+        </div>
+        <div class="right">
+          <button id="themeToggle" class="sq-btn" aria-label="Toggle theme"><i id="themeToggleIcon" class="fa-solid fa-moon"></i></button>
+          <div class="dropdown">
+            <button id="notifyBtn" class="sq-btn position-relative dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Notifications">
+              <i class="fa-solid fa-bell"></i>
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-end p-0" style="min-width: 320px;">
+              <div class="p-2 border-bottom d-flex justify-content-between align-items-center">
+                <span class="fw-semibold">Notifications</span>
+                <button class="btn btn-sm btn-link text-decoration-none">Mark all read</button>
+              </div>
+              <div class="list-group list-group-flush">
+                <a class="list-group-item list-group-item-action d-flex gap-2 align-items-start" href="#">
+                  <span class="badge bg-danger rounded-circle" style="width:10px;height:10px"></span>
+                  <div>
+                    <div class="fw-semibold">Invoice INV-1001 overdue</div>
+                    <div class="text-muted small">Finance · 3h ago</div>
+                  </div>
+                </a>
+                <a class="list-group-item list-group-item-action d-flex gap-2 align-items-start" href="#">
+                  <span class="badge bg-primary rounded-circle" style="width:10px;height:10px"></span>
+                  <div>
+                    <div class="fw-semibold">New client created: StartupXYZ</div>
+                    <div class="text-muted small">Clients · 6h ago</div>
+                  </div>
+                </a>
+                <a class="list-group-item list-group-item-action d-flex gap-2 align-items-start" href="#">
+                  <span class="badge bg-info rounded-circle" style="width:10px;height:10px"></span>
+                  <div>
+                    <div class="fw-semibold">Role changed: Dewaka → Senior Dev</div>
+                    <div class="text-muted small">Users · 1d ago</div>
+                  </div>
+                </a>
+              </div>
+              <div class="p-2 border-top text-center">
+                <a class="small" href="#" data-page="notifications">View all notifications</a>
+              </div>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button class="sq-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Language">
+              <i class="fa-solid fa-globe"></i> <span id="currentLang">EN</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="#" data-lang="en">English</a></li>
+              <li><a class="dropdown-item" href="#" data-lang="si">Sinhala</a></li>
+            </ul>
+          </div>
+          <div class="dropdown">
+            <button class="sq-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Profile">
+              <i class="fa-solid fa-user"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li class="px-3 py-2">
+                <div class="fw-semibold">SoftCode Admin</div>
+                <div class="text-muted small">admin@softcodepro.com</div>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#" data-page="users"><i class="fa-regular fa-id-badge me-2"></i>My Profile</a></li>
+              <li><a class="dropdown-item" href="#" data-page="settings"><i class="fa-solid fa-gear me-2"></i>Settings</a></li>
+              <li><a class="dropdown-item" href="#"><i class="fa-solid fa-right-from-bracket me-2"></i>Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <section class="scp-container">
+        <div class="page" id="page-dashboard" role="tabpanel">
+          <div class="kpi-grid">
+            <div class="scp-card kpi">
+              <div class="d-flex justify-content-between align-items-start">
+                <div>
+                  <p class="mb-1 text-uppercase small fw-semibold text-muted">Projects Ongoing</p>
+                  <h3 id="kpi-ongoing">24</h3>
+                  <div class="trend up"><i class="fa-solid fa-arrow-trend-up me-1"></i> +8% this month</div>
+                </div>
+                <div class="icon"><i class="fa-solid fa-diagram-project"></i></div>
+              </div>
+            </div>
+            <div class="scp-card kpi">
+              <div class="d-flex justify-content-between align-items-start">
+                <div>
+                  <p class="mb-1 text-uppercase small fw-semibold text-muted">Completed</p>
+                  <h3 id="kpi-completed">112</h3>
+                  <div class="trend up"><i class="fa-solid fa-check me-1"></i> +3% this month</div>
+                </div>
+                <div class="icon" style="background: linear-gradient(45deg,#16a34a,#22c55e)"><i class="fa-solid fa-circle-check"></i></div>
+              </div>
+            </div>
+            <div class="scp-card kpi">
+              <div class="d-flex justify-content-between align-items-start">
+                <div>
+                  <p class="mb-1 text-uppercase small fw-semibold text-muted">Pending Tasks</p>
+                  <h3 id="kpi-pending">37</h3>
+                  <div class="trend down"><i class="fa-solid fa-clock-rotate-left me-1"></i> -2% this month</div>
+                </div>
+                <div class="icon" style="background: linear-gradient(45deg,#f59e0b,#fbbf24)"><i class="fa-solid fa-hourglass-half"></i></div>
+              </div>
+            </div>
+            <div class="scp-card kpi">
+              <div class="d-flex justify-content-between align-items-start">
+                <div>
+                  <p class="mb-1 text-uppercase small fw-semibold text-muted">Revenue</p>
+                  <h3 id="kpi-revenue">$89.2K</h3>
+                  <div class="trend up"><i class="fa-solid fa-arrow-up me-1"></i> +12% QoQ</div>
+                </div>
+                <div class="icon" style="background: linear-gradient(45deg,#1d4ed8,#3b82f6)"><i class="fa-solid fa-dollar-sign"></i></div>
+              </div>
+            </div>
+            <div class="scp-card kpi">
+              <div class="d-flex justify-content-between align-items-start">
+                <div>
+                  <p class="mb-1 text-uppercase small fw-semibold text-muted">Expenses</p>
+                  <h3 id="kpi-expenses">$21.4K</h3>
+                  <div class="trend down"><i class="fa-solid fa-arrow-down me-1"></i> -4% QoQ</div>
+                </div>
+                <div class="icon" style="background: linear-gradient(45deg,#ef4444,#f87171)"><i class="fa-solid fa-receipt"></i></div>
+              </div>
+            </div>
+            <div class="scp-card kpi">
+              <div class="d-flex justify-content-between align-items-start">
+                <div>
+                  <p class="mb-1 text-uppercase small fw-semibold text-muted">Active Clients</p>
+                  <h3 id="kpi-clients">150+</h3>
+                  <div class="trend up"><i class="fa-solid fa-user-group me-1"></i> +5 this week</div>
+                </div>
+                <div class="icon" style="background: linear-gradient(45deg,#0ea5e9,#38bdf8)"><i class="fa-solid fa-user-tie"></i></div>
+              </div>
+            </div>
+          </div>
+
+  <!-- Update Project Phase Modal -->
+  <div class="modal fade" id="updatePhaseModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Update Project Phase</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="formUpdatePhase" class="row g-3">
+            <div class="col-12"><label class="form-label">Project</label><input id="updProjectName" type="text" class="form-control" disabled></div>
+            <div class="col-md-6"><label class="form-label">Current Phase</label><select id="updPhase" class="form-select"><option>Planning</option><option>Development</option><option>Testing</option><option>Deployment</option><option>Maintenance</option></select></div>
+            <div class="col-md-6"><label class="form-label">Status</label><select id="updStatus" class="form-select"><option>Not Started</option><option>In Progress</option><option>On Hold</option><option>Completed</option></select></div>
+            <div class="col-12"><label class="form-label">Progress %</label><input id="updProgress" type="range" class="form-range" min="0" max="100" step="1" value="0" oninput="this.nextElementSibling.value=this.value + '%'">
+              <output style="margin-left:8px">0%</output></div>
+            <div class="col-12"><label class="form-label">Notes</label><textarea id="updNotes" class="form-control" rows="2" placeholder="Optional"></textarea></div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" form="formUpdatePhase" class="btn btn-primary">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+          <div class="chart-grid">
+            <div class="scp-card chart-card">
+              <div class="chart-title">Monthly Revenue</div>
+              <canvas id="monthlyRevenueChart" aria-label="Monthly Revenue Chart" tabindex="-1"></canvas>
+            </div>
+            <div class="scp-card chart-card">
+              <div class="chart-title">Project Progress</div>
+              <canvas id="projectProgressChart" aria-label="Project Progress Chart" tabindex="-1"></canvas>
+            </div>
+          </div>
+
+          <div class="split-grid">
+            <div class="scp-card widget">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <div class="chart-title m-0">Notifications</div>
+                <span class="badge rounded-pill text-bg-primary">3</span>
+              </div>
+              <ul class="notify-list">
+                <li class="notify-item"><span class="badge"><i class="fa-solid fa-plus"></i></span><div><div class="fw-semibold">New project created</div><div class="text-muted small">2 hours ago</div></div></li>
+                <li class="notify-item"><span class="badge"><i class="fa-solid fa-check"></i></span><div><div class="fw-semibold">Task completed</div><div class="text-muted small">4 hours ago</div></div></li>
+                <li class="notify-item"><span class="badge"><i class="fa-solid fa-user-plus"></i></span><div><div class="fw-semibold">New employee added</div><div class="text-muted small">6 hours ago</div></div></li>
+              </ul>
+            </div>
+            <div class="scp-card widget">
+              <div class="chart-title">Quick Actions</div>
+              <div class="actions">
+                <button class="sq-btn primary w-100" data-bs-toggle="modal" data-bs-target="#createProjectModal"><i class="fa-solid fa-plus"></i> Create Project</button>
+                <button class="sq-btn w-100" data-bs-toggle="modal" data-bs-target="#addEmployeeModal"><i class="fa-solid fa-user-plus"></i> Add Employee</button>
+                <button class="sq-btn w-100" data-bs-toggle="modal" data-bs-target="#addInvoiceModal"><i class="fa-solid fa-file-invoice"></i> Add Invoice</button>
+              </div>
+            </div>
+            <div class="scp-card widget">
+              <div class="chart-title">Shortcuts</div>
+              <div class="d-flex flex-wrap gap-2">
+                <a href="#" class="sq-btn"><i class="fa-solid fa-calendar-days"></i> Calendar</a>
+                <a href="#" class="sq-btn"><i class="fa-solid fa-envelope"></i> Messages</a>
+                <a href="#" class="sq-btn"><i class="fa-solid fa-download"></i> Export</a>
+              </div>
+            </div>
+          </div>
+          <div class="spacer"></div>
+        </div>
+
+        <div class="page d-none" id="page-users" role="tabpanel">
+          <div class="scp-card p-3 mb-3">
+            <ul class="nav nav-pills" id="usersTab" role="tablist">
+              <li class="nav-item" role="presentation"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#employees-list" type="button" role="tab">Employee List</button></li>
+              <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#employees-attendance" type="button" role="tab">Attendance & Timesheet</button></li>
+              <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#employees-performance" type="button" role="tab">Performance & Roles</button></li>
+              <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#employees-management" type="button" role="tab">Employee Management</button></li>
+            </ul>
+          </div>
+          <div class="tab-content">
+            <div class="tab-pane fade show active" id="employees-list" role="tabpanel">
+              <div class="scp-card p-3 mb-3">
+                <div class="d-flex flex-wrap gap-2 justify-content-between align-items-center">
+                  <div class="d-flex gap-2 align-items-center">
+                    <input id="employeesSearch" type="search" class="form-control" placeholder="Search employees">
+                    <select class="form-select" style="max-width:200px">
+                      <option value="">All Roles</option>
+                      <option>Admin</option>
+                      <option>Manager</option>
+                      <option>Developer</option>
+                      <option>Tester</option>
+                      <option>HR</option>
+                      <option>Finance</option>
+                    </select>
+                  </div>
+                  <button class="sq-btn primary" data-bs-toggle="modal" data-bs-target="#addEmployeeModal"><i class="fa-solid fa-user-plus"></i> Add Employee</button>
+                </div>
+              </div>
+              <div class="scp-card data-table">
+                <div class="table-header">Employees</div>
+                <table class="table" id="employeesTable">
+                  <thead><tr><th>Avatar</th><th>Name</th><th>Email</th><th>Role</th><th>Status</th><th>Actions</th></tr></thead>
+                  <tbody>
+                    <tr>
+                      <td><img class="avatar" src="../images/temmember/Heshan.png" alt="Heshan"></td>
+                      <td>Heshan Perera</td><td>heshan@softcodepro.com</td><td>Manager</td><td><span class="status active">Active</span></td>
+                      <td class="text-nowrap">
+                        <button class="btn btn-sm btn-outline-secondary" aria-label="Appointment Letter"><i class="fa-solid fa-file-signature"></i></button>
+                        <button class="btn btn-sm btn-outline-secondary" aria-label="View"><i class="fa-solid fa-eye"></i></button>
+                        <button class="btn btn-sm btn-outline-primary" aria-label="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button class="btn btn-sm btn-outline-danger" aria-label="Delete"><i class="fa-solid fa-trash"></i></button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><img class="avatar" src="../images/temmember/dewaka.jpg" alt="Dewaka"></td>
+                      <td>Dewaka Silva</td><td>dewaka@softcodepro.com</td><td>Developer</td><td><span class="status active">Active</span></td>
+                      <td class="text-nowrap">
+                        <button class="btn btn-sm btn-outline-secondary" aria-label="Appointment Letter"><i class="fa-solid fa-file-signature"></i></button>
+                        <button class="btn btn-sm btn-outline-secondary" aria-label="View"><i class="fa-solid fa-eye"></i></button>
+                        <button class="btn btn-sm btn-outline-primary" aria-label="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button class="btn btn-sm btn-outline-danger" aria-label="Delete"><i class="fa-solid fa-trash"></i></button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><img class="avatar" src="../images/temmember/1.jpg" alt="User"></td>
+                      <td>Sachini Fernando</td><td>sachini@softcodepro.com</td><td>HR</td><td><span class="status pending">Pending</span></td>
+                      <td class="text-nowrap">
+                        <button class="btn btn-sm btn-outline-secondary" aria-label="Appointment Letter"><i class="fa-solid fa-file-signature"></i></button>
+                        <button class="btn btn-sm btn-outline-secondary" aria-label="View"><i class="fa-solid fa-eye"></i></button>
+                        <button class="btn btn-sm btn-outline-primary" aria-label="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button class="btn btn-sm btn-outline-danger" aria-label="Delete"><i class="fa-solid fa-trash"></i></button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="employees-attendance" role="tabpanel">
+              <div class="scp-card p-3 mb-3">
+                <div class="row g-3">
+                  <div class="col-md-4"><label class="form-label">From</label><input type="date" class="form-control"></div>
+                  <div class="col-md-4"><label class="form-label">To</label><input type="date" class="form-control"></div>
+                  <div class="col-md-4 d-flex align-items-end"><button class="sq-btn primary w-100"><i class="fa-solid fa-filter"></i> Filter</button></div>
+                </div>
+              </div>
+              <div class="scp-card data-table">
+                <div class="table-header">Timesheet</div>
+                <table class="table"><thead><tr><th>Employee</th><th>Date</th><th>Hours</th><th>Notes</th></tr></thead><tbody>
+                  <tr><td>Heshan Perera</td><td>2025-09-05</td><td>8</td><td>Client meeting + planning</td></tr>
+                  <tr><td>Dewaka Silva</td><td>2025-09-05</td><td>7.5</td><td>Feature implementation</td></tr>
+                </tbody></table>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="employees-performance" role="tabpanel">
+              <div class="scp-card data-table">
+                <div class="table-header">Performance & Roles</div>
+                <table class="table"><thead><tr><th>Name</th><th>Role</th><th>KPI Score</th><th>Rating</th><th>Actions</th></tr></thead><tbody>
+                  <tr><td>Heshan Perera</td><td>Manager</td><td>88</td><td>⭐⭐⭐⭐</td><td><button class="btn btn-sm btn-outline-primary">Adjust Role</button></td></tr>
+                  <tr><td>Dewaka Silva</td><td>Developer</td><td>92</td><td>⭐⭐⭐⭐⭐</td><td><button class="btn btn-sm btn-outline-primary">Adjust Role</button></td></tr>
+                </tbody></table>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="employees-management" role="tabpanel">
+              <div class="scp-card p-3 mb-3 d-flex flex-wrap gap-2 align-items-center toolbar-scroll">
+                <button class="sq-btn" data-bs-toggle="modal" data-bs-target="#modalEmpGender"><i class="fa-solid fa-venus-mars"></i> Gender</button>
+                <button class="sq-btn" data-bs-toggle="modal" data-bs-target="#modalEmpWorkLocation"><i class="fa-solid fa-location-dot"></i> Work Location</button>
+                <button class="sq-btn" data-bs-toggle="modal" data-bs-target="#modalEmpEmployment"><i class="fa-solid fa-id-card-clip"></i> Employment</button>
+                <button class="sq-btn" data-bs-toggle="modal" data-bs-target="#modalEmpDepartment"><i class="fa-solid fa-diagram-project"></i> Department</button>
+                <button class="sq-btn" data-bs-toggle="modal" data-bs-target="#modalEmpStatus"><i class="fa-solid fa-user-check"></i> Status</button>
+                <button class="sq-btn" data-bs-toggle="modal" data-bs-target="#modalEmpRole"><i class="fa-solid fa-user-gear"></i> Role</button>
+                <button class="sq-btn" data-bs-toggle="modal" data-bs-target="#modalEmpPerformance"><i class="fa-solid fa-chart-line"></i> Performance</button>
+              </div>
+              <div class="scp-card p-3">
+                <div class="text-muted">Use the buttons above to update employee attributes via quick modals.</div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        <div class="page d-none" id="page-clients" role="tabpanel">
+          <div class="scp-card p-3 mb-3">
+            <ul class="nav nav-pills" role="tablist">
+              <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#clients-list" type="button">Client List</button></li>
+              <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#clients-details" type="button">Client Details</button></li>
+              <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#clients-management" type="button">Client Management</button></li>
+            </ul>
+          </div>
+          <div class="tab-content">
+            <div class="tab-pane fade show active" id="clients-list">
+              <div class="scp-card p-3 mb-3 d-flex gap-2 justify-content-between align-items-center">
+                <input id="clientsSearch" type="search" class="form-control" placeholder="Search clients">
+                <button class="sq-btn primary" data-bs-toggle="modal" data-bs-target="#addClientModal"><i class="fa-solid fa-plus"></i> New Client</button>
+              </div>
+              <div class="scp-card data-table">
+                <div class="table-header">Clients</div>
+                <table class="table" id="clientsTable"><thead><tr><th>Company</th><th>Contact</th><th>Email</th><th>Projects</th><th>Status</th><th>Actions</th></tr></thead><tbody>
+                  <tr><td>TechCorp Inc.</td><td>Amal Wijesinghe</td><td>amal@techcorp.com</td><td>3</td><td><span class="status active">Active</span></td><td class="text-nowrap"><button class="btn btn-sm btn-outline-secondary" aria-label="View"><i class="fa-solid fa-eye"></i></button> <button class="btn btn-sm btn-outline-primary" aria-label="Edit"><i class="fa-solid fa-pen-to-square"></i></button> <button class="btn btn-sm btn-outline-danger" aria-label="Delete"><i class="fa-solid fa-trash"></i></button></td></tr>
+                  <tr><td>StartupXYZ</td><td>Dinithi Jay</td><td>dj@startupxyz.io</td><td>1</td><td><span class="status pending">Pending</span></td><td class="text-nowrap"><button class="btn btn-sm btn-outline-secondary" aria-label="View"><i class="fa-solid fa-eye"></i></button> <button class="btn btn-sm btn-outline-primary" aria-label="Edit"><i class="fa-solid fa-pen-to-square"></i></button> <button class="btn btn-sm btn-outline-danger" aria-label="Delete"><i class="fa-solid fa-trash"></i></button></td></tr>
+                </tbody></table>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="clients-details">
+              <div class="scp-card p-3 mb-3">
+                <div class="row g-2 align-items-center">
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+                      <input id="clientsPickerSearch" type="search" class="form-control" placeholder="Search client by company, contact, or email">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <select id="clientsPickerSelect" class="form-select">
+                      <option value="" selected disabled>Select a client…</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="scp-card p-3" id="clientDetailsPanel">
+                <div class="text-muted">Select a client to view full details.</div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="clients-management">
+              <div class="scp-card p-3 mb-3 d-flex flex-wrap gap-2 justify-content-between align-items-center">
+                <div class="d-flex flex-wrap gap-2 align-items-center toolbar-scroll">
+                  <button class="sq-btn" data-bs-toggle="modal" data-bs-target="#modalPreferredCommunication"><i class="fa-solid fa-message"></i> Preferred Communication</button>
+                  <button class="sq-btn" data-bs-toggle="modal" data-bs-target="#modalBillingTerms"><i class="fa-solid fa-file-invoice-dollar"></i> Billing Terms</button>
+                  <button class="sq-btn" data-bs-toggle="modal" data-bs-target="#modalCurrency"><i class="fa-solid fa-coins"></i> Currency</button>
+                  <button class="sq-btn" data-bs-toggle="modal" data-bs-target="#modalPaymentMethod"><i class="fa-solid fa-credit-card"></i> Payment Method</button>
+                  <button class="sq-btn" data-bs-toggle="modal" data-bs-target="#modalPriority"><i class="fa-solid fa-signal"></i> Priority Level</button>
+                  <button class="sq-btn" data-bs-toggle="modal" data-bs-target="#modalClientStatus"><i class="fa-solid fa-toggle-on"></i> Status</button>
+                </div>
+              </div>
+              
+            </div>
+            
+          </div>
+        </div>
+        <div class="page d-none" id="page-projects" role="tabpanel">
+          <div class="scp-card p-3 mb-3">
+            <ul class="nav nav-pills" role="tablist">
+              <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#projects-list" type="button">Project List</button></li>
+              <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#projects-details" type="button">Project Details</button></li>
+              <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#projects-advanced" type="button">Project Advance Setting</button></li>
+            </ul>
+          </div>
+          <div class="tab-content">
+            <div class="tab-pane fade show active" id="projects-list">
+              <div class="scp-card p-3 mb-3 d-flex gap-2 justify-content-between align-items-center">
+                <div class="d-flex flex-nowrap gap-2 align-items-center toolbar-scroll">
+                  <div class="input-group" style="min-width:260px">
+                    <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input id="projectsSearch" type="search" class="form-control" placeholder="Search projects">
+                  </div>
+                  <select id="projectsClientFilter" class="form-select" style="min-width:160px">
+                    <option value="">All Clients</option>
+                    <option>TechCorp Inc.</option>
+                    <option>StartupXYZ</option>
+                  </select>
+                  <select id="projectsCategoryFilter" class="form-select" style="min-width:160px">
+                    <option value="">All Categories</option>
+                    <option>Web</option>
+                    <option>Mobile</option>
+                    <option>Backend/API</option>
+                    <option>Design</option>
+                  </select>
+                </div>
+                <button class="sq-btn primary" data-bs-toggle="modal" data-bs-target="#createProjectModal"><i class="fa-solid fa-plus"></i> Add Project</button>
+              </div>
+              <div class="scp-card data-table">
+                <div class="table-header">Projects</div>
+                <table class="table" id="projectsTable"><thead><tr><th>Name</th><th>Client</th><th>Status</th><th>Progress</th><th>Due Date</th><th>Actions</th></tr></thead><tbody>
+                  <tr><td>E-commerce Platform</td><td>TechCorp Inc.</td><td><span class="status active">Ongoing</span></td><td>75%</td><td>2025-12-15</td><td class="text-nowrap">
+                    <button class="btn btn-sm btn-outline-secondary" aria-label="Generate Invoice"><i class="fa-solid fa-file-invoice-dollar"></i></button>
+                    <button class="btn btn-sm btn-outline-secondary" aria-label="View"><i class="fa-solid fa-eye"></i></button>
+                    <button class="btn btn-sm btn-outline-primary" aria-label="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                    <button class="btn btn-sm btn-outline-danger" aria-label="Delete"><i class="fa-solid fa-trash"></i></button>
+                  </td></tr>
+                  <tr><td>Mobile App</td><td>StartupXYZ</td><td><span class="status pending">Pending</span></td><td>45%</td><td>2026-01-20</td><td class="text-nowrap">
+                    <button class="btn btn-sm btn-outline-secondary" aria-label="Generate Invoice"><i class="fa-solid fa-file-invoice-dollar"></i></button>
+                    <button class="btn btn-sm btn-outline-secondary" aria-label="View"><i class="fa-solid fa-eye"></i></button>
+                    <button class="btn btn-sm btn-outline-primary" aria-label="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                    <button class="btn btn-sm btn-outline-danger" aria-label="Delete"><i class="fa-solid fa-trash"></i></button>
+                  </td></tr>
+                </tbody></table>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="projects-details">
+              <div class="scp-card p-3 mb-3">
+                <div class="row g-2 align-items-center">
+                  <div class="col-md-4">
+                    <div class="input-group">
+                      <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+                      <input id="projectsDetailSearch" type="search" class="form-control" placeholder="Search project by name or client">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <select id="projectsDetailProjectSelect" class="form-select">
+                      <option value="" selected disabled>Select project…</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4">
+                    <select id="projectsDetailClientSelect" class="form-select">
+                      <option value="">All clients</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="scp-card p-3" id="projectDetailsPanel">
+                <div class="text-muted">Select a project to view full details.</div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="projects-advanced">
+              <div class="scp-card p-3 mb-3 d-flex flex-wrap gap-2 align-items-center toolbar-scroll">
+                <button class="sq-btn" data-bs-toggle="modal" data-bs-target="#modalProjType"><i class="fa-solid fa-layer-group"></i> Project Type</button>
+                <button class="sq-btn" data-bs-toggle="modal" data-bs-target="#modalProjPhase"><i class="fa-solid fa-timeline"></i> Project Phase</button>
+                <button class="sq-btn" data-bs-toggle="modal" data-bs-target="#modalProjPaymentTerms"><i class="fa-solid fa-file-invoice-dollar"></i> Payment Terms</button>
+                <button class="sq-btn" data-bs-toggle="modal" data-bs-target="#modalProjStatus"><i class="fa-solid fa-circle-nodes"></i> Current Status</button>
+                <button class="sq-btn" data-bs-toggle="modal" data-bs-target="#modalProjRating"><i class="fa-solid fa-star"></i> Rating</button>
+                <button class="sq-btn" data-bs-toggle="modal" data-bs-target="#modalProjPriority"><i class="fa-solid fa-signal"></i> Priority</button>
+                <button class="sq-btn" data-bs-toggle="modal" data-bs-target="#modalProjSla"><i class="fa-solid fa-shield-halved"></i> SLA Tracking</button>
+              </div>
+              <div class="scp-card p-3">
+                <div class="text-muted">Use these quick settings to adjust advanced project attributes.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="page d-none" id="page-tasks" role="tabpanel">
+          <div class="scp-card p-3 mb-3">
+            <ul class="nav nav-pills" role="tablist">
+              <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#proc-process" type="button">Process View</button></li>
+              <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#proc-list" type="button">View List</button></li>
+              <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#proc-calendar" type="button">Calendar</button></li>
+            </ul>
+          </div>
+
+          <div class="tab-content">
+            <!-- Process View -->
+            <div class="tab-pane fade show active" id="proc-process">
+              <div class="scp-card p-3 mb-3">
+                <div class="scp-inline-toolbar" role="group" aria-label="Process filters">
+                  <div class="tool-item">
+                    <i class="fa-solid fa-magnifying-glass tool-icon" aria-hidden="true"></i>
+                    <input id="processSearch" type="search" class="form-control tool-input" placeholder="Search project" aria-label="Search project">
+                  </div>
+                  <span class="divider" aria-hidden="true"></span>
+                  <div class="tool-item">
+                    <label for="processClientFilter" class="visually-hidden">Client</label>
+                    <select id="processClientFilter" class="form-select tool-select" aria-label="Filter by client">
+                      <option value="">All Clients</option>
+                      <option>TechCorp Inc.</option>
+                      <option>StartupXYZ</option>
+                    </select>
+                  </div>
+                  <span class="divider" aria-hidden="true"></span>
+                  <div class="tool-item">
+                    <label for="processStatusFilter" class="visually-hidden">Status</label>
+                    <select id="processStatusFilter" class="form-select tool-select" aria-label="Filter by status">
+                      <option value="">All Status</option>
+                      <option>Not Started</option>
+                      <option>In Progress</option>
+                      <option>On Hold</option>
+                      <option>Completed</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row g-3" id="projectProcessList">
+                <!-- Project card 1 -->
+                <div class="col-12">
+                  <div class="scp-card p-3" data-project="E-commerce Platform">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                      <div>
+                        <h6 class="m-0">E-commerce Platform</h6>
+                        <div class="text-muted small">Client: TechCorp Inc. · Status: In Progress · Priority: High</div>
+                      </div>
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="badge bg-primary rounded-pill project-progress">75% </span>
+                        <button class="btn btn-sm btn-outline-primary process-edit" aria-label="Edit Phase"><i class="fa-solid fa-pen-to-square"></i></button>
+                      </div>
+                    </div>
+                    <ol class="process-stepper">
+                      <li class="done"><span class="dot"></span><span class="label">Planning</span></li>
+                      <li class="active"><span class="dot"></span><span class="label">Development</span></li>
+                      <li><span class="dot"></span><span class="label">Testing</span></li>
+                      <li><span class="dot"></span><span class="label">Deployment</span></li>
+                      <li><span class="dot"></span><span class="label">Maintenance</span></li>
+                    </ol>
+                  </div>
+                </div>
+                <!-- Project card 2 -->
+                <div class="col-12">
+                  <div class="scp-card p-3" data-project="Mobile App">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                      <div>
+                        <h6 class="m-0">Mobile App</h6>
+                        <div class="text-muted small">Client: StartupXYZ · Status: Pending · Priority: Medium</div>
+                      </div>
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="badge bg-secondary rounded-pill project-progress">45% </span>
+                        <button class="btn btn-sm btn-outline-primary process-edit" aria-label="Edit Phase"><i class="fa-solid fa-pen-to-square"></i></button>
+                      </div>
+                    </div>
+                    <ol class="process-stepper">
+                      <li class="done"><span class="dot"></span><span class="label">Planning</span></li>
+                      <li class="active pending"><span class="dot"></span><span class="label">Development</span></li>
+                      <li><span class="dot"></span><span class="label">Testing</span></li>
+                      <li><span class="dot"></span><span class="label">Deployment</span></li>
+                      <li><span class="dot"></span><span class="label">Maintenance</span></li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- View List -->
+            <div class="tab-pane fade" id="proc-list">
+              <div class="scp-card data-table">
+                <div class="table-header">Projects (List)</div>
+                <table class="table" id="processListTable"><thead><tr><th>Project</th><th>Client</th><th>Status</th><th>Phase</th><th>Progress</th><th>Due</th></tr></thead><tbody>
+                  <tr><td>E-commerce Platform</td><td>TechCorp Inc.</td><td>In Progress</td><td>Development</td><td>75%</td><td>2025-12-15</td></tr>
+                  <tr><td>Mobile App</td><td>StartupXYZ</td><td>Pending</td><td>Planning</td><td>45%</td><td>2026-01-20</td></tr>
+                </tbody></table>
+              </div>
+            </div>
+
+            <!-- Calendar -->
+            <div class="tab-pane fade" id="proc-calendar">
+              <div class="scp-card p-3 mb-3 d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="legend-item d-flex align-items-center gap-1"><span class="legend-dot progress"></span><span>Process Days</span></div>
+                  <div class="legend-item d-flex align-items-center gap-1"><span class="legend-dot schedule"></span><span>New Project Schedule</span></div>
+                </div>
+                <div id="procCalMonthLabel" class="fw-semibold"></div>
+              </div>
+              <div class="scp-card p-3">
+                <div id="processCalendar"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="page d-none" id="page-finance" role="tabpanel">
+          <div class="scp-card p-3 mb-3">
+            <ul class="nav nav-pills" role="tablist">
+              <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#fin-invoices" type="button">Invoice List</button></li>
+              <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#fin-payments" type="button">Payments</button></li>
+              <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#fin-expenses" type="button">Expenses</button></li>
+              <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#fin-payroll" type="button">Payroll</button></li>
+              <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#fin-reports" type="button">Financial Reports</button></li>
+            </ul>
+          </div>
+          <div class="tab-content">
+            <div class="tab-pane fade show active" id="fin-invoices">
+              <div class="scp-card p-3 mb-3 d-flex gap-2 justify-content-between align-items-center">
+                <div class="d-flex flex-nowrap gap-2 align-items-center toolbar-scroll">
+                  <div class="input-group" style="min-width:240px">
+                    <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input id="invoiceSearch" type="search" class="form-control" placeholder="Search invoices (#, client)">
+                  </div>
+                  <select id="invoiceClientFilter" class="form-select" style="min-width:160px">
+                    <option value="">All Clients</option>
+                    <option>TechCorp</option>
+                    <option>StartupXYZ</option>
+                  </select>
+                  <select id="invoiceStatusFilter" class="form-select" style="min-width:160px">
+                    <option value="">All Status</option>
+                    <option>Pending</option>
+                    <option>Paid</option>
+                    <option>Overdue</option>
+                  </select>
+                </div>
+                <button class="sq-btn primary"><i class="fa-solid fa-plus"></i> New Invoice</button>
+              </div>
+              <div class="scp-card data-table">
+                <div class="table-header">Invoices</div>
+                <table class="table" id="invoicesTable"><thead><tr><th>#</th><th>Client</th><th>Amount</th><th>Status</th><th>Due</th><th>Actions</th></tr></thead><tbody>
+                  <tr><td>INV-1001</td><td>TechCorp</td><td>$4,200</td><td><span class="status pending">Pending</span></td><td>2025-09-25</td><td class="text-nowrap">
+                    <button class="btn btn-sm btn-outline-secondary" aria-label="View"><i class="fa-solid fa-eye"></i></button>
+                    <button class="btn btn-sm btn-outline-primary" aria-label="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                    <button class="btn btn-sm btn-outline-danger" aria-label="Delete"><i class="fa-solid fa-trash"></i></button>
+                  </td></tr>
+                </tbody></table>
+              </div>
+            </div>
+            
+            <div class="tab-pane fade" id="fin-payments">
+              <div class="scp-card p-3 mb-3 d-flex gap-2 justify-content-between align-items-center">
+                <div class="d-flex flex-nowrap gap-2 align-items-center toolbar-scroll">
+                  <div class="input-group" style="min-width:240px">
+                    <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input id="paymentsSearch" type="search" class="form-control" placeholder="Search payments (ID, invoice, client)">
+                  </div>
+                  <select id="paymentsClientFilter" class="form-select" style="min-width:160px">
+                    <option value="">All Clients</option>
+                    <option>TechCorp</option>
+                    <option>StartupXYZ</option>
+                  </select>
+                  <select id="paymentsMethodFilter" class="form-select" style="min-width:160px">
+                    <option value="">All Methods</option>
+                    <option>Bank</option>
+                    <option>Card</option>
+                    <option>PayPal</option>
+                    <option>Crypto</option>
+                  </select>
+                  <select id="paymentsStatusFilter" class="form-select" style="min-width:160px">
+                    <option value="">All Status</option>
+                    <option>Received</option>
+                    <option>Pending</option>
+                    <option>Failed</option>
+                    <option>Refunded</option>
+                  </select>
+                  <div class="d-flex align-items-center gap-2">
+                    <input id="paymentsFromDate" type="date" class="form-control">
+                    <span class="text-muted small">to</span>
+                    <input id="paymentsToDate" type="date" class="form-control">
+                  </div>
+                </div>
+                <button class="sq-btn primary"><i class="fa-solid fa-plus"></i> Add Payment</button>
+              </div>
+
+              <div class="scp-card data-table">
+                <div class="table-header">Payments</div>
+                <table class="table" id="paymentsTable">
+                  <thead>
+                    <tr><th>Payment ID</th><th>Invoice #</th><th>Client</th><th>Amount</th><th>Method</th><th>Status</th><th>Date</th><th>Actions</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>PMT-5001</td>
+                      <td>INV-1001</td>
+                      <td>TechCorp</td>
+                      <td>$4,200</td>
+                      <td>Bank</td>
+                      <td><span class="status active">Received</span></td>
+                      <td>2025-09-10</td>
+                      <td class="text-nowrap">
+                        <button class="btn btn-sm btn-outline-secondary" aria-label="View"><i class="fa-solid fa-eye"></i></button>
+                        <button class="btn btn-sm btn-outline-primary" aria-label="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button class="btn btn-sm btn-outline-warning" aria-label="Refund"><i class="fa-solid fa-rotate-left"></i></button>
+                        <button class="btn btn-sm btn-outline-danger" aria-label="Delete"><i class="fa-solid fa-trash"></i></button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>PMT-5002</td>
+                      <td>INV-1003</td>
+                      <td>StartupXYZ</td>
+                      <td>$1,150</td>
+                      <td>Card</td>
+                      <td><span class="status pending">Pending</span></td>
+                      <td>2025-09-12</td>
+                      <td class="text-nowrap">
+                        <button class="btn btn-sm btn-outline-secondary" aria-label="View"><i class="fa-solid fa-eye"></i></button>
+                        <button class="btn btn-sm btn-outline-primary" aria-label="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button class="btn btn-sm btn-outline-warning" aria-label="Refund"><i class="fa-solid fa-rotate-left"></i></button>
+                        <button class="btn btn-sm btn-outline-danger" aria-label="Delete"><i class="fa-solid fa-trash"></i></button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- Expenses -->
+            <div class="tab-pane fade" id="fin-expenses">
+              <div class="scp-card p-3 mb-3 d-flex gap-2 justify-content-between align-items-center">
+                <div class="d-flex flex-nowrap gap-2 align-items-center toolbar-scroll">
+                  <div class="input-group" style="min-width:240px">
+                    <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input id="expensesSearch" type="search" class="form-control" placeholder="Search expenses (ID, vendor, note)">
+                  </div>
+                  <select id="expensesCategoryFilter" class="form-select" style="min-width:160px">
+                    <option value="">All Categories</option>
+                    <option>Operations</option>
+                    <option>Marketing</option>
+                    <option>Travel</option>
+                    <option>Utilities</option>
+                  </select>
+                  <select id="expensesStatusFilter" class="form-select" style="min-width:160px">
+                    <option value="">All Status</option>
+                    <option>Approved</option>
+                    <option>Pending</option>
+                    <option>Rejected</option>
+                  </select>
+                  <div class="d-flex align-items-center gap-2">
+                    <input id="expensesFromDate" type="date" class="form-control">
+                    <span class="text-muted small">to</span>
+                    <input id="expensesToDate" type="date" class="form-control">
+                  </div>
+                </div>
+                <button class="sq-btn primary"><i class="fa-solid fa-plus"></i> Add Expense</button>
+              </div>
+              <div class="scp-card data-table">
+                <div class="table-header">Expenses</div>
+                <table class="table" id="expensesTable"><thead><tr><th>Expense ID</th><th>Category</th><th>Vendor</th><th>Amount</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead><tbody>
+                  <tr><td>EXP-3001</td><td>Operations</td><td>ABC Supplies</td><td>$320</td><td><span class="status active">Approved</span></td><td>2025-09-08</td><td class="text-nowrap">
+                    <button class="btn btn-sm btn-outline-secondary" aria-label="View"><i class="fa-solid fa-eye"></i></button>
+                    <button class="btn btn-sm btn-outline-primary" aria-label="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                    <button class="btn btn-sm btn-outline-danger" aria-label="Delete"><i class="fa-solid fa-trash"></i></button>
+                  </td></tr>
+                  <tr><td>EXP-3002</td><td>Marketing</td><td>Ads Network</td><td>$780</td><td><span class="status pending">Pending</span></td><td>2025-09-12</td><td class="text-nowrap">
+                    <button class="btn btn-sm btn-outline-secondary" aria-label="View"><i class="fa-solid fa-eye"></i></button>
+                    <button class="btn btn-sm btn-outline-primary" aria-label="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                    <button class="btn btn-sm btn-outline-danger" aria-label="Delete"><i class="fa-solid fa-trash"></i></button>
+                  </td></tr>
+                </tbody></table>
+              </div>
+            </div>
+
+            <!-- Payroll -->
+            <div class="tab-pane fade" id="fin-payroll">
+              <div class="scp-card p-3 mb-3 d-flex gap-2 justify-content-between align-items-center">
+                <div class="d-flex flex-nowrap gap-2 align-items-center toolbar-scroll">
+                  <input id="payrollMonth" type="month" class="form-control" style="min-width:180px">
+                  <select id="payrollDeptFilter" class="form-select" style="min-width:160px">
+                    <option value="">All Departments</option>
+                    <option>Development</option>
+                    <option>Design</option>
+                    <option>Marketing</option>
+                    <option>HR</option>
+                    <option>Finance</option>
+                  </select>
+                  <select id="payrollStatusFilter" class="form-select" style="min-width:160px">
+                    <option value="">All Status</option>
+                    <option>Draft</option>
+                    <option>Processed</option>
+                    <option>Paid</option>
+                  </select>
+                </div>
+                <div class="d-flex gap-2">
+                  <button class="sq-btn"><i class="fa-solid fa-file-export"></i> Export</button>
+                  <button class="sq-btn primary"><i class="fa-solid fa-money-check-dollar"></i> Process Payroll</button>
+                </div>
+              </div>
+              <div class="scp-card data-table">
+                <div class="table-header">Payroll</div>
+                <table class="table" id="payrollTable"><thead><tr><th>Employee</th><th>Dept</th><th>Basic</th><th>Allowances</th><th>Deductions</th><th>Net Pay</th><th>Status</th><th>Actions</th></tr></thead><tbody>
+                  <tr><td>Heshan Perera</td><td>Management</td><td>$1,500</td><td>$200</td><td>$50</td><td>$1,650</td><td><span class="status active">Paid</span></td><td class="text-nowrap">
+                    <button class="btn btn-sm btn-outline-secondary" aria-label="View"><i class="fa-solid fa-eye"></i></button>
+                    <button class="btn btn-sm btn-outline-primary" aria-label="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                    <button class="btn btn-sm btn-outline-danger" aria-label="Delete"><i class="fa-solid fa-trash"></i></button>
+                  </td></tr>
+                  <tr><td>Dewaka Silva</td><td>Development</td><td>$1,200</td><td>$150</td><td>$0</td><td>$1,350</td><td><span class="status pending">Draft</span></td><td class="text-nowrap">
+                    <button class="btn btn-sm btn-outline-secondary" aria-label="View"><i class="fa-solid fa-eye"></i></button>
+                    <button class="btn btn-sm btn-outline-primary" aria-label="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                    <button class="btn btn-sm btn-outline-danger" aria-label="Delete"><i class="fa-solid fa-trash"></i></button>
+                  </td></tr>
+                </tbody></table>
+              </div>
+            </div>
+
+            <!-- Financial Reports -->
+            <div class="tab-pane fade" id="fin-reports">
+              <div class="scp-card p-3 mb-3 d-flex gap-2 justify-content-between align-items-center">
+                <div class="d-flex flex-wrap gap-2 align-items-center">
+                  <div class="d-flex align-items-center gap-2">
+                    <input id="repFrom" type="date" class="form-control">
+                    <span class="text-muted small">to</span>
+                    <input id="repTo" type="date" class="form-control">
+                  </div>
+                  <select id="repType" class="form-select" style="min-width:200px">
+                    <option value="P&L">Profit & Loss</option>
+                    <option value="Cashflow">Cashflow</option>
+                    <option value="BalanceSheet">Balance Sheet</option>
+                    <option value="Aging">A/R Aging</option>
+                  </select>
+                </div>
+                <div class="d-flex gap-2">
+                  <button class="sq-btn"><i class="fa-solid fa-file-pdf"></i> PDF</button>
+                  <button class="sq-btn"><i class="fa-solid fa-file-excel"></i> Excel</button>
+                </div>
+              </div>
+              <div class="row g-3">
+                <div class="col-md-4"><div class="scp-card p-3"><div class="chart-title">Total Revenue</div><div class="h4 m-0">$89,200</div></div></div>
+                <div class="col-md-4"><div class="scp-card p-3"><div class="chart-title">Total Expenses</div><div class="h4 m-0">$21,400</div></div></div>
+                <div class="col-md-4"><div class="scp-card p-3"><div class="chart-title">Net Profit</div><div class="h4 m-0 text-success">$67,800</div></div></div>
+                <div class="col-12"><div class="scp-card p-4">Report preview coming soon. Use filters above to change range/type.</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="page d-none" id="page-client-payments" role="tabpanel">
+          <div class="scp-card p-3 mb-3">
+            <ul class="nav nav-pills" role="tablist">
+              <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#cp-invoices" type="button">Invoice List</button></li>
+              <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#cp-invoice-edit" type="button">Add/Edit Invoice</button></li>
+              <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#cp-payments" type="button">Payments</button></li>
+              <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#cp-history" type="button">Client Payment History</button></li>
+              <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#cp-reports" type="button">Reports & Analytics</button></li>
+            </ul>
+          </div>
+
+          <div class="tab-content">
+            <!-- a) Invoice List -->
+            <div class="tab-pane fade show active" id="cp-invoices">
+              <div class="scp-card p-3 mb-3 d-flex gap-2 justify-content-between align-items-center">
+                <div class="d-flex flex-nowrap gap-2 align-items-center toolbar-scroll">
+                  <div class="input-group" style="min-width:260px">
+                    <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input id="cpInvSearch" type="search" class="form-control" placeholder="Search invoice (#, client, project)">
+                  </div>
+                  <select id="cpInvProjectFilter" class="form-select" style="min-width:180px"><option value="">All Projects</option><option>E-commerce Platform</option><option>Mobile App</option></select>
+                  <select id="cpInvStatusFilter" class="form-select" style="min-width:160px"><option value="">All Status</option><option>Pending</option><option>Paid</option><option>Overdue</option></select>
+                  <div class="d-flex align-items-center gap-2">
+                    <input id="cpInvFrom" type="date" class="form-control">
+                    <span class="text-muted small">to</span>
+                    <input id="cpInvTo" type="date" class="form-control">
+                  </div>
+                </div>
+                <button class="sq-btn primary" data-bs-toggle="pill" data-bs-target="#cp-invoice-edit"><i class="fa-solid fa-plus"></i> New Invoice</button>
+              </div>
+              <div class="scp-card data-table">
+                <div class="table-header">Invoices</div>
+                <table class="table" id="cpInvoicesTable"><thead><tr><th>Invoice Number</th><th>Client Name</th><th>Project</th><th>Issue Date</th><th>Due Date</th><th>Amount</th><th>Status</th><th>Actions</th></tr></thead><tbody>
+                  <tr><td>INV-1001</td><td>TechCorp</td><td>E-commerce Platform</td><td>2025-08-25</td><td>2025-09-25</td><td>$4,200</td><td><span class="status pending">Pending</span></td><td class="text-nowrap">
+                    <button class="btn btn-sm btn-outline-secondary" aria-label="View"><i class="fa-solid fa-eye"></i></button>
+                    <button class="btn btn-sm btn-outline-primary" aria-label="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                    <button class="btn btn-sm btn-outline-danger" aria-label="Delete"><i class="fa-solid fa-trash"></i></button>
+                    <button class="btn btn-sm btn-outline-success" aria-label="Send to Client"><i class="fa-solid fa-paper-plane"></i></button>
+                  </td></tr>
+                  <tr><td>INV-1003</td><td>StartupXYZ</td><td>Mobile App</td><td>2025-09-01</td><td>2025-10-01</td><td>$1,150</td><td><span class="status active">Paid</span></td><td class="text-nowrap">
+                    <button class="btn btn-sm btn-outline-secondary" aria-label="View"><i class="fa-solid fa-eye"></i></button>
+                    <button class="btn btn-sm btn-outline-primary" aria-label="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                    <button class="btn btn-sm btn-outline-danger" aria-label="Delete"><i class="fa-solid fa-trash"></i></button>
+                    <button class="btn btn-sm btn-outline-success" aria-label="Send to Client"><i class="fa-solid fa-paper-plane"></i></button>
+                  </td></tr>
+                </tbody></table>
+                <nav class="mt-3" aria-label="Invoice pagination">
+                  <ul class="pagination pagination-sm mb-0 justify-content-end">
+                    <li class="page-item disabled"><button class="page-link">Prev</button></li>
+                    <li class="page-item active"><button class="page-link">1</button></li>
+                    <li class="page-item"><button class="page-link">2</button></li>
+                    <li class="page-item"><button class="page-link">3</button></li>
+                    <li class="page-item"><button class="page-link">Next</button></li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+
+            <!-- b) Add/Edit Invoice -->
+            <div class="tab-pane fade" id="cp-invoice-edit">
+              <div class="scp-card p-3">
+                <form id="formCpInvoice" class="row g-3">
+                  <div class="col-md-6"><label class="form-label">Client</label><select class="form-select" required><option value="" disabled selected>Select client</option><option>TechCorp</option><option>StartupXYZ</option></select></div>
+                  <div class="col-md-6"><label class="form-label">Project</label><select class="form-select" required><option value="" disabled selected>Select project</option><option>E-commerce Platform</option><option>Mobile App</option></select></div>
+                  <div class="col-md-4"><label class="form-label">Invoice Number</label><input type="text" class="form-control" placeholder="Auto-generate or enter manually"></div>
+                  <div class="col-md-4"><label class="form-label">Issue Date</label><input type="date" class="form-control" required></div>
+                  <div class="col-md-4"><label class="form-label">Due Date</label><input type="date" class="form-control" required></div>
+                  <div class="col-md-4"><label class="form-label">Amount</label><input type="number" class="form-control" min="0" step="0.01" required></div>
+                  <div class="col-md-4"><label class="form-label">Currency</label><select class="form-select"><option>USD</option><option>LKR</option><option>EUR</option></select></div>
+                  <div class="col-md-4"><label class="form-label">Tax / VAT</label><input type="number" class="form-control" min="0" step="0.01" placeholder="Optional"></div>
+                  <div class="col-md-6"><label class="form-label">Payment Terms</label><select class="form-select"><option>Full</option><option>Milestone</option><option>Recurring</option></select></div>
+                  <div class="col-md-6"><label class="form-label">Attach Invoice (PDF)</label><input type="file" class="form-control" accept="application/pdf"></div>
+                  <div class="col-12"><label class="form-label">Notes / Remarks</label><textarea class="form-control" rows="2"></textarea></div>
+                  <div class="col-12 text-muted small">On Save, status defaults to <strong>Pending</strong>.</div>
+                  <div class="col-12 d-flex justify-content-end gap-2"><button class="btn btn-outline-secondary" type="reset">Reset</button><button class="btn btn-primary" type="submit">Save Invoice</button></div>
+                </form>
+              </div>
+            </div>
+
+            <!-- c) Payments Page -->
+            <div class="tab-pane fade" id="cp-payments">
+              <div class="scp-card p-3 mb-3 d-flex gap-2 justify-content-between align-items-center">
+                <div class="d-flex flex-nowrap gap-2 align-items-center toolbar-scroll">
+                  <div class="input-group" style="min-width:260px"><span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span><input id="cpPaySearch" type="search" class="form-control" placeholder="Search payments (invoice, client, ref)"></div>
+                  <select id="cpPayMethod" class="form-select" style="min-width:160px"><option value="">All Methods</option><option>Bank</option><option>Credit Card</option><option>PayPal</option><option>Cash</option><option>Other</option></select>
+                  <select id="cpPayStatus" class="form-select" style="min-width:160px"><option value="">All Status</option><option>Received</option><option>Pending</option><option>Failed</option><option>Refunded</option></select>
+                  <div class="d-flex align-items-center gap-2"><input id="cpPayFrom" type="date" class="form-control"><span class="text-muted small">to</span><input id="cpPayTo" type="date" class="form-control"></div>
+                </div>
+                <button class="sq-btn primary"><i class="fa-solid fa-plus"></i> Add Payment</button>
+              </div>
+              <div class="scp-card data-table">
+                <div class="table-header">Payments Received</div>
+                <table class="table" id="cpPaymentsTable"><thead><tr><th>Payment Date</th><th>Invoice</th><th>Client</th><th>Amount Paid</th><th>Method</th><th>Reference #</th><th>Partial</th><th>Actions</th></tr></thead><tbody>
+                  <tr><td>2025-09-10</td><td>INV-1001</td><td>TechCorp</td><td>$2,100</td><td>Bank</td><td>TRX-7782</td><td><span class="badge bg-warning text-dark">Yes</span></td><td class="text-nowrap">
+                    <button class="btn btn-sm btn-outline-secondary" aria-label="View"><i class="fa-solid fa-eye"></i></button>
+                    <button class="btn btn-sm btn-outline-primary" aria-label="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                    <button class="btn btn-sm btn-outline-danger" aria-label="Delete"><i class="fa-solid fa-trash"></i></button>
+                  </td></tr>
+                  <tr><td>2025-09-12</td><td>INV-1003</td><td>StartupXYZ</td><td>$1,150</td><td>Card</td><td>CC-9921</td><td><span class="badge bg-success">No</span></td><td class="text-nowrap">
+                    <button class="btn btn-sm btn-outline-secondary" aria-label="View"><i class="fa-solid fa-eye"></i></button>
+                    <button class="btn btn-sm btn-outline-primary" aria-label="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                    <button class="btn btn-sm btn-outline-danger" aria-label="Delete"><i class="fa-solid fa-trash"></i></button>
+                  </td></tr>
+                </tbody></table>
+              </div>
+            </div>
+
+            <!-- d) Client Payment History -->
+            <div class="tab-pane fade" id="cp-history">
+              <div class="scp-card p-3 mb-3">
+                <div class="row g-2 align-items-center">
+                  <div class="col-md-6"><div class="input-group"><span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span><input id="cpHistSearch" type="search" class="form-control" placeholder="Search by invoice or note"></div></div>
+                  <div class="col-md-6"><select id="cpHistClient" class="form-select"><option value="" selected disabled>Select a client…</option><option>TechCorp</option><option>StartupXYZ</option></select></div>
+                </div>
+              </div>
+              <div class="scp-card p-3" id="cpHistoryPanel"><div class="text-muted">Select a client to view all invoices and payments, with balance due.</div></div>
+            </div>
+
+            <!-- e) Reports & Analytics -->
+            <div class="tab-pane fade" id="cp-reports">
+              <div class="row g-3">
+                <div class="col-md-3"><div class="scp-card p-3"><div class="text-muted small">This Month Collected</div><div class="h4 m-0">$5,350</div></div></div>
+                <div class="col-md-3"><div class="scp-card p-3"><div class="text-muted small">Outstanding Invoices</div><div class="h4 m-0">$4,200</div></div></div>
+                <div class="col-md-3"><div class="scp-card p-3"><div class="text-muted small">Avg. Days to Pay</div><div class="h4 m-0">18</div></div></div>
+                <div class="col-md-3"><div class="scp-card p-3"><div class="text-muted small">Overdue Count</div><div class="h4 m-0">2</div></div></div>
+                <div class="col-12"><div class="scp-card p-3">
+                  <div class="table-header">Reports</div>
+                  <table class="table" id="cpReportsTable"><thead><tr><th>Type</th><th>Period</th><th>Actions</th></tr></thead><tbody>
+                    <tr><td>Monthly Collections</td><td>Sep 2025</td><td class="text-nowrap"><button class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-eye"></i></button><button class="btn btn-sm btn-outline-primary ms-1"><i class="fa-solid fa-file-pdf"></i></button><button class="btn btn-sm btn-outline-success ms-1"><i class="fa-solid fa-file-excel"></i></button></td></tr>
+                    <tr><td>Outstanding Invoices</td><td>As of Today</td><td class="text-nowrap"><button class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-eye"></i></button><button class="btn btn-sm btn-outline-primary ms-1"><i class="fa-solid fa-file-pdf"></i></button><button class="btn btn-sm btn-outline-success ms-1"><i class="fa-solid fa-file-excel"></i></button></td></tr>
+                    <tr><td>Project-wise Payments</td><td>Q3 2025</td><td class="text-nowrap"><button class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-eye"></i></button><button class="btn btn-sm btn-outline-primary ms-1"><i class="fa-solid fa-file-pdf"></i></button><button class="btn btn-sm btn-outline-success ms-1"><i class="fa-solid fa-file-excel"></i></button></td></tr>
+                    <tr><td>Client-wise Summary</td><td>YTD</td><td class="text-nowrap"><button class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-eye"></i></button><button class="btn btn-sm btn-outline-primary ms-1"><i class="fa-solid fa-file-pdf"></i></button><button class="btn btn-sm btn-outline-success ms-1"><i class="fa-solid fa-file-excel"></i></button></td></tr>
+                  </tbody></table>
+                </div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="page d-none" id="page-employee-payments" role="tabpanel">
+          <div class="scp-card p-3 mb-3">
+            <ul class="nav nav-pills" role="tablist">
+              <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#ep-salary-list" type="button">Salary List</button></li>
+              <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#ep-salary-edit" type="button">Add/Edit Salary</button></li>
+              <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#ep-process" type="button">Process Payments</button></li>
+              <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#ep-history" type="button">Payment History / Slips</button></li>
+              <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#ep-reports" type="button">Reports & Analytics</button></li>
+            </ul>
+          </div>
+
+          <div class="tab-content">
+            <!-- a) Employee Salary List -->
+            <div class="tab-pane fade show active" id="ep-salary-list">
+              <div class="scp-card p-3 mb-3 d-flex gap-2 justify-content-between align-items-center">
+                <div class="d-flex flex-nowrap gap-2 align-items-center toolbar-scroll">
+                  <div class="input-group" style="min-width:260px"><span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span><input id="epSearch" type="search" class="form-control" placeholder="Search employee, ID, month"></div>
+                  <select id="epDeptFilter" class="form-select" style="min-width:160px"><option value="">All Departments</option><option>Development</option><option>Design</option><option>Marketing</option><option>HR</option><option>Finance</option></select>
+                  <select id="epMonthFilter" class="form-select" style="min-width:160px"><option value="">All Months</option><option>2025-09</option><option>2025-08</option><option>2025-07</option></select>
+                  <select id="epStatusFilter" class="form-select" style="min-width:160px"><option value="">All Status</option><option>Pending</option><option>Paid</option><option>Partially Paid</option></select>
+                </div>
+                <button class="sq-btn primary" data-bs-toggle="pill" data-bs-target="#ep-salary-edit"><i class="fa-solid fa-plus"></i> Add Salary</button>
+              </div>
+              <div class="scp-card data-table">
+                <div class="table-header">Employee Salaries</div>
+                <table class="table" id="epSalaryTable"><thead><tr><th>Employee Name</th><th>Employee ID</th><th>Department</th><th>Designation</th><th>Month</th><th>Gross</th><th>Deductions</th><th>Net</th><th>Status</th><th>Actions</th></tr></thead><tbody>
+                  <tr><td>Heshan Perera</td><td>EMP-001</td><td>Management</td><td>Manager</td><td>2025-09</td><td>$1,700</td><td>$50</td><td>$1,650</td><td><span class="status active">Paid</span></td><td class="text-nowrap">
+                    <button class="btn btn-sm btn-outline-secondary" aria-label="View"><i class="fa-solid fa-eye"></i></button>
+                    <button class="btn btn-sm btn-outline-primary" aria-label="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                    <button class="btn btn-sm btn-outline-success" aria-label="Process Payment"><i class="fa-solid fa-money-check-dollar"></i></button>
+                    <button class="btn btn-sm btn-outline-info" aria-label="Download Payslip"><i class="fa-solid fa-file-arrow-down"></i></button>
+                  </td></tr>
+                  <tr><td>Dewaka Silva</td><td>EMP-024</td><td>Development</td><td>Developer</td><td>2025-09</td><td>$1,350</td><td>$0</td><td>$1,350</td><td><span class="status pending">Pending</span></td><td class="text-nowrap">
+                    <button class="btn btn-sm btn-outline-secondary" aria-label="View"><i class="fa-solid fa-eye"></i></button>
+                    <button class="btn btn-sm btn-outline-primary" aria-label="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                    <button class="btn btn-sm btn-outline-success" aria-label="Process Payment"><i class="fa-solid fa-money-check-dollar"></i></button>
+                    <button class="btn btn-sm btn-outline-info" aria-label="Download Payslip"><i class="fa-solid fa-file-arrow-down"></i></button>
+                  </td></tr>
+                </tbody></table>
+                <nav class="mt-3" aria-label="Salary pagination">
+                  <ul class="pagination pagination-sm mb-0 justify-content-end">
+                    <li class="page-item disabled"><button class="page-link">Prev</button></li>
+                    <li class="page-item active"><button class="page-link">1</button></li>
+                    <li class="page-item"><button class="page-link">2</button></li>
+                    <li class="page-item"><button class="page-link">Next</button></li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+
+            <!-- b) Add / Edit Salary -->
+            <div class="tab-pane fade" id="ep-salary-edit">
+              <div class="scp-card p-3">
+                <form id="formEpSalary" class="row g-3">
+                  <div class="col-md-6"><label class="form-label">Employee</label><select class="form-select" required><option value="" disabled selected>Select employee</option><option>Heshan Perera (EMP-001)</option><option>Dewaka Silva (EMP-024)</option></select></div>
+                  <div class="col-md-3"><label class="form-label">Department</label><input type="text" class="form-control" placeholder="Auto" disabled></div>
+                  <div class="col-md-3"><label class="form-label">Designation</label><input type="text" class="form-control" placeholder="Auto" disabled></div>
+                  <div class="col-md-4"><label class="form-label">Month</label><input type="month" class="form-control" required></div>
+                  <div class="col-md-4"><label class="form-label">Basic Salary</label><input id="epBasic" type="number" class="form-control" min="0" step="0.01" required></div>
+                  <div class="col-md-4"><label class="form-label">Overtime Hours</label><input id="epOTHours" type="number" class="form-control" min="0" step="0.1" placeholder="0"></div>
+                  <div class="col-md-4"><label class="form-label">Overtime Rate</label><input id="epOTRate" type="number" class="form-control" min="0" step="0.01" placeholder="0"></div>
+                  <div class="col-md-4"><label class="form-label">Bonus / Incentives</label><input id="epBonus" type="number" class="form-control" min="0" step="0.01" placeholder="0"></div>
+                  <div class="col-md-4"><label class="form-label">Allowances (Housing)</label><input id="epAllHousing" type="number" class="form-control" min="0" step="0.01" placeholder="0"></div>
+                  <div class="col-md-4"><label class="form-label">Allowances (Transport)</label><input id="epAllTransport" type="number" class="form-control" min="0" step="0.01" placeholder="0"></div>
+                  <div class="col-md-4"><label class="form-label">Allowances (Other)</label><input id="epAllOther" type="number" class="form-control" min="0" step="0.01" placeholder="0"></div>
+                  <div class="col-md-4"><label class="form-label">Deductions (Tax)</label><input id="epDedTax" type="number" class="form-control" min="0" step="0.01" placeholder="0"></div>
+                  <div class="col-md-4"><label class="form-label">Deductions (Loans)</label><input id="epDedLoans" type="number" class="form-control" min="0" step="0.01" placeholder="0"></div>
+                  <div class="col-md-4"><label class="form-label">Deductions (Absences)</label><input id="epDedAbsences" type="number" class="form-control" min="0" step="0.01" placeholder="0"></div>
+                  <div class="col-md-4"><label class="form-label">Deductions (Other)</label><input id="epDedOther" type="number" class="form-control" min="0" step="0.01" placeholder="0"></div>
+                  <div class="col-md-4"><label class="form-label">Payment Status</label><select class="form-select"><option>Pending</option><option>Paid</option><option>Partially Paid</option></select></div>
+                  <div class="col-12"><label class="form-label">Notes / Remarks</label><textarea class="form-control" rows="2"></textarea></div>
+                  <div class="col-12"><label class="form-label">Net Salary (auto)</label><input id="epNet" type="text" class="form-control" placeholder="$0.00" disabled></div>
+                  <div class="col-12 d-flex justify-content-end gap-2"><button class="btn btn-outline-secondary" type="reset">Reset</button><button class="btn btn-primary" type="submit">Save Salary</button></div>
+                </form>
+              </div>
+            </div>
+
+            <!-- c) Salary Payment Processing -->
+            <div class="tab-pane fade" id="ep-process">
+              <div class="scp-card p-3">
+                <form id="formEpProcess" class="row g-3">
+                  <div class="col-12"><label class="form-label">Select Employees</label>
+                    <select class="form-select" multiple>
+                      <option>Heshan Perera (EMP-001)</option>
+                      <option>Dewaka Silva (EMP-024)</option>
+                      <option>Sachini Fernando (EMP-037)</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4"><label class="form-label">Payment Method</label><select class="form-select"><option>Bank Transfer</option><option>Cash</option><option>Cheque</option><option>Other</option></select></div>
+                  <div class="col-md-4"><label class="form-label">Payment Date</label><input type="date" class="form-control" required></div>
+                  <div class="col-md-4"><label class="form-label">Transaction Ref #</label><input type="text" class="form-control" placeholder="Optional"></div>
+                  <div class="col-12 d-flex justify-content-end gap-2"><button class="btn btn-outline-secondary" type="reset">Reset</button><button class="btn btn-primary" type="submit">Confirm Payment</button></div>
+                </form>
+              </div>
+            </div>
+
+            <!-- d) Payment History / Salary Slip -->
+            <div class="tab-pane fade" id="ep-history">
+              <div class="scp-card p-3 mb-3 d-flex gap-2 justify-content-between align-items-center">
+                <div class="d-flex flex-nowrap gap-2 align-items-center toolbar-scroll">
+                  <div class="input-group" style="min-width:260px"><span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span><input id="epHistSearch" type="search" class="form-control" placeholder="Search by employee or note"></div>
+                  <select id="epHistEmp" class="form-select" style="min-width:200px"><option value="" selected disabled>Select employee…</option><option>Heshan Perera</option><option>Dewaka Silva</option></select>
+                  <input id="epHistMonth" type="month" class="form-control" style="min-width:180px">
+                </div>
+                <div class="d-flex gap-2">
+                  <button class="sq-btn"><i class="fa-solid fa-file-pdf"></i> PDF</button>
+                  <button class="sq-btn"><i class="fa-solid fa-file-excel"></i> Excel</button>
+                </div>
+              </div>
+              <div class="scp-card data-table">
+                <div class="table-header">Payment History</div>
+                <table class="table" id="epHistTable"><thead><tr><th>Date</th><th>Employee</th><th>Month</th><th>Net Salary</th><th>Status</th><th>Actions</th></tr></thead><tbody>
+                  <tr><td>2025-09-01</td><td>Heshan Perera</td><td>2025-09</td><td>$1,650</td><td><span class="status active">Paid</span></td><td class="text-nowrap"><button class="btn btn-sm btn-outline-secondary" aria-label="View"><i class="fa-solid fa-eye"></i></button><button class="btn btn-sm btn-outline-info" aria-label="Slip PDF"><i class="fa-solid fa-file-pdf"></i></button><button class="btn btn-sm btn-outline-success" aria-label="Slip Excel"><i class="fa-solid fa-file-excel"></i></button></td></tr>
+                </tbody></table>
+              </div>
+            </div>
+
+            <!-- e) Reports & Analytics -->
+            <div class="tab-pane fade" id="ep-reports">
+              <div class="row g-3">
+                <div class="col-md-3"><div class="scp-card p-3"><div class="text-muted small">Payroll (This Month)</div><div class="h4 m-0">$32,450</div></div></div>
+                <div class="col-md-3"><div class="scp-card p-3"><div class="text-muted small">Outstanding</div><div class="h4 m-0">$4,300</div></div></div>
+                <div class="col-md-3"><div class="scp-card p-3"><div class="text-muted small">Avg Net Salary</div><div class="h4 m-0">$1,420</div></div></div>
+                <div class="col-md-3"><div class="scp-card p-3"><div class="text-muted small">Employees Paid</div><div class="h4 m-0">18</div></div></div>
+                <div class="col-12"><div class="scp-card p-3">
+                  <div class="table-header">Payroll Reports</div>
+                  <table class="table" id="epReportsTable"><thead><tr><th>Type</th><th>Period</th><th>Actions</th></tr></thead><tbody>
+                    <tr><td>Dept-wise Summary</td><td>Sep 2025</td><td class="text-nowrap"><button class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-eye"></i></button><button class="btn btn-sm btn-outline-primary ms-1"><i class="fa-solid fa-file-pdf"></i></button><button class="btn btn-sm btn-outline-success ms-1"><i class="fa-solid fa-file-excel"></i></button></td></tr>
+                    <tr><td>Monthly Total Payroll</td><td>2025</td><td class="text-nowrap"><button class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-eye"></i></button><button class="btn btn-sm btn-outline-primary ms-1"><i class="fa-solid fa-file-pdf"></i></button><button class="btn btn-sm btn-outline-success ms-1"><i class="fa-solid fa-file-excel"></i></button></td></tr>
+                    <tr><td>Annual Expenditure</td><td>Last 3 Years</td><td class="text-nowrap"><button class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-eye"></i></button><button class="btn btn-sm btn-outline-primary ms-1"><i class="fa-solid fa-file-pdf"></i></button><button class="btn btn-sm btn-outline-success ms-1"><i class="fa-solid fa-file-excel"></i></button></td></tr>
+                  </tbody></table>
+                </div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="page d-none" id="page-support" role="tabpanel">
+          <div class="scp-card p-3 mb-3">
+            <ul class="nav nav-pills" role="tablist">
+              <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#sup-dashboard" type="button">Dashboard</button></li>
+              <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#sup-tickets" type="button">Tickets</button></li>
+              <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#sup-ticket-edit" type="button">Add/Edit Ticket</button></li>
+              <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#sup-ticket-details" type="button">Ticket Details</button></li>
+              <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#sup-reports" type="button">Reports & Analytics</button></li>
+            </ul>
+          </div>
+          <div class="tab-content">
+            <!-- a) Support Dashboard -->
+            <div class="tab-pane fade show active" id="sup-dashboard">
+              <div class="row g-3">
+                <div class="col-md-3"><div class="scp-card p-3"><div class="text-muted small">Total Tickets</div><div class="h4 m-0">128</div></div></div>
+                <div class="col-md-3"><div class="scp-card p-3"><div class="text-muted small">Open Tickets</div><div class="h4 m-0 text-warning">34</div></div></div>
+                <div class="col-md-3"><div class="scp-card p-3"><div class="text-muted small">Closed Tickets</div><div class="h4 m-0 text-success">82</div></div></div>
+                <div class="col-md-3"><div class="scp-card p-3"><div class="text-muted small">Overdue</div><div class="h4 m-0 text-danger">12</div></div></div>
+                <div class="col-md-4"><div class="scp-card chart-card"><div class="chart-title">Tickets by Status</div><canvas id="supStatusPie" aria-label="Tickets by Status"></canvas></div></div>
+                <div class="col-md-4"><div class="scp-card chart-card"><div class="chart-title">Tickets by Priority</div><canvas id="supPriorityBar" aria-label="Tickets by Priority"></canvas></div></div>
+                <div class="col-md-4"><div class="scp-card chart-card"><div class="chart-title">Monthly Ticket Volume</div><canvas id="supMonthlyLine" aria-label="Monthly Ticket Volume"></canvas></div></div>
+              </div>
+            </div>
+
+            <!-- b) Ticket List / Table -->
+            <div class="tab-pane fade" id="sup-tickets">
+              <div class="scp-card p-3 mb-3 d-flex gap-2 justify-content-between align-items-center">
+                <div class="d-flex flex-nowrap gap-2 align-items-center toolbar-scroll">
+                  <div class="input-group" style="min-width:260px"><span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span><input id="supSearch" type="search" class="form-control" placeholder="Search Ticket ID, Client, Subject"></div>
+                  <select id="supStatusFilter" class="form-select" style="min-width:160px"><option value="">All Status</option><option>Open</option><option>In Progress</option><option>On Hold</option><option>Closed</option></select>
+                  <select id="supPriorityFilter" class="form-select" style="min-width:160px"><option value="">All Priority</option><option>Low</option><option>Medium</option><option>High</option><option>Critical</option></select>
+                  <select id="supAssigneeFilter" class="form-select" style="min-width:160px"><option value="">Assigned To</option><option>Heshan</option><option>Dewaka</option><option>Sachini</option></select>
+                  <div class="d-flex align-items-center gap-2"><input id="supFrom" type="date" class="form-control"><span class="text-muted small">to</span><input id="supTo" type="date" class="form-control"></div>
+                </div>
+                <div class="d-flex gap-2">
+                  <button class="sq-btn" data-bs-toggle="pill" data-bs-target="#sup-ticket-edit"><i class="fa-solid fa-plus"></i> Add Ticket</button>
+                </div>
+              </div>
+              <div class="scp-card data-table">
+                <div class="table-header">Tickets</div>
+                <table class="table" id="supTicketsTable"><thead><tr><th>Ticket ID</th><th>Client/Employee</th><th>Project</th><th>Subject</th><th>Assigned To</th><th>Priority</th><th>Status</th><th>Created At</th><th>Actions</th></tr></thead><tbody>
+                  <tr><td>TK-210</td><td>TechCorp</td><td>E-commerce</td><td>Login Issue</td><td>Heshan</td><td><span class="badge bg-danger">High</span></td><td><span class="status pending">Open</span></td><td>2025-09-07</td><td class="text-nowrap">
+                    <button class="btn btn-sm btn-outline-secondary" aria-label="View"><i class="fa-solid fa-eye"></i></button>
+                    <button class="btn btn-sm btn-outline-primary" aria-label="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                    <button class="btn btn-sm btn-outline-success" aria-label="Assign"><i class="fa-solid fa-user-check"></i></button>
+                    <button class="btn btn-sm btn-outline-warning" aria-label="Close"><i class="fa-solid fa-circle-check"></i></button>
+                    <button class="btn btn-sm btn-outline-danger" aria-label="Delete"><i class="fa-solid fa-trash"></i></button>
+                  </td></tr>
+                </tbody></table>
+                <nav class="mt-3" aria-label="Ticket pagination">
+                  <ul class="pagination pagination-sm mb-0 justify-content-end"><li class="page-item disabled"><button class="page-link">Prev</button></li><li class="page-item active"><button class="page-link">1</button></li><li class="page-item"><button class="page-link">2</button></li><li class="page-item"><button class="page-link">Next</button></li></ul>
+                </nav>
+              </div>
+            </div>
+
+            <!-- c) Add / Edit Ticket Page -->
+            <div class="tab-pane fade" id="sup-ticket-edit">
+              <div class="scp-card p-3">
+                <form id="formSupTicket" class="row g-3">
+                  <div class="col-md-6"><label class="form-label">Client / Employee</label><select class="form-select" required><option value="" disabled selected>Select</option><option>TechCorp (Client)</option><option>StartupXYZ (Client)</option><option>Heshan Perera (Employee)</option></select></div>
+                  <div class="col-md-6"><label class="form-label">Project (optional)</label><select class="form-select"><option value="">None</option><option>E-commerce Platform</option><option>Mobile App</option></select></div>
+                  <div class="col-md-6"><label class="form-label">Subject / Title</label><input type="text" class="form-control" required></div>
+                  <div class="col-12"><label class="form-label">Description / Issue Details</label><textarea class="form-control" rows="4" placeholder="Describe the issue"></textarea></div>
+                  <div class="col-md-4"><label class="form-label">Priority</label><select class="form-select"><option>Low</option><option>Medium</option><option>High</option><option>Critical</option></select></div>
+                  <div class="col-md-4"><label class="form-label">Status</label><select class="form-select"><option>Open</option><option>In Progress</option><option>On Hold</option><option>Closed</option></select></div>
+                  <div class="col-md-4"><label class="form-label">Assign To</label><select class="form-select"><option>Heshan</option><option>Dewaka</option><option>Sachini</option></select></div>
+                  <div class="col-md-6"><label class="form-label">Attachments</label><input type="file" class="form-control" multiple accept="image/*,application/pdf"></div>
+                  <div class="col-md-6"><label class="form-label">Internal Notes</label><input type="text" class="form-control" placeholder="Visible to staff only"></div>
+                  <div class="col-12 d-flex justify-content-end gap-2"><button class="btn btn-outline-secondary" type="reset">Reset</button><button class="btn btn-primary" type="submit">Save Ticket</button></div>
+                </form>
+              </div>
+            </div>
+
+            <!-- d) Ticket Details / Conversation -->
+            <div class="tab-pane fade" id="sup-ticket-details">
+              <div class="row g-3">
+                <div class="col-md-8">
+                  <div class="scp-card p-3">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                      <div>
+                        <h6 class="m-0">TK-210 · Login Issue</h6>
+                        <div class="text-muted small">Client: TechCorp · Project: E-commerce · Priority: <span class="badge bg-danger">High</span> · Status: <span class="status pending">Open</span></div>
+                      </div>
+                      <div class="d-flex gap-2">
+                        <button class="btn btn-sm btn-outline-success"><i class="fa-solid fa-circle-check"></i> Close</button>
+                        <button class="btn btn-sm btn-outline-primary"><i class="fa-solid fa-user-check"></i> Reassign</button>
+                        <button class="btn btn-sm btn-outline-warning"><i class="fa-solid fa-pause"></i> On Hold</button>
+                      </div>
+                    </div>
+                    <div class="timeline">
+                      <div class="mb-3">
+                        <div class="fw-semibold">2025-09-07 10:12 · Client</div>
+                        <div>Cannot login to admin portal, getting 500 error.</div>
+                      </div>
+                      <div class="mb-3">
+                        <div class="fw-semibold">2025-09-07 10:35 · Support (Heshan)</div>
+                        <div>We are investigating. Could you share a screenshot?</div>
+                      </div>
+                    </div>
+                    <form class="mt-3 d-grid gap-2">
+                      <textarea class="form-control" rows="3" placeholder="Write a reply or internal note..."></textarea>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="internalNoteChk">
+                          <label class="form-check-label" for="internalNoteChk">Internal note</label>
+                        </div>
+                        <div class="d-flex gap-2">
+                          <input type="file" class="form-control" style="max-width:240px" multiple>
+                          <button class="btn btn-primary" type="button"><i class="fa-solid fa-paper-plane"></i> Reply</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="scp-card p-3">
+                    <div class="chart-title">Ticket Summary</div>
+                    <div class="small text-muted">SLA: 4h · First Response: 23m · Last Update: 3m ago</div>
+                    <hr>
+                    <div class="d-grid gap-2">
+                      <button class="btn btn-outline-secondary btn-sm">Change Status</button>
+                      <button class="btn btn-outline-secondary btn-sm">Assign</button>
+                      <button class="btn btn-outline-secondary btn-sm">Add Tag</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- e) Reports & Analytics -->
+            <div class="tab-pane fade" id="sup-reports">
+              <div class="row g-3">
+                <div class="col-md-3"><div class="scp-card p-3"><div class="text-muted small">Avg Response Time</div><div class="h4 m-0">1h 12m</div></div></div>
+                <div class="col-md-3"><div class="scp-card p-3"><div class="text-muted small">Avg Resolution</div><div class="h4 m-0">12h 45m</div></div></div>
+                <div class="col-md-3"><div class="scp-card p-3"><div class="text-muted small">Open Tickets</div><div class="h4 m-0 text-warning">34</div></div></div>
+                <div class="col-md-3"><div class="scp-card p-3"><div class="text-muted small">Overdue</div><div class="h4 m-0 text-danger">12</div></div></div>
+                <div class="col-md-6"><div class="scp-card chart-card"><div class="chart-title">Tickets per Client</div><canvas id="supClientBar"></canvas></div></div>
+                <div class="col-md-6"><div class="scp-card chart-card"><div class="chart-title">SLA Compliance</div><canvas id="supSlaGauge"></canvas></div></div>
+                <div class="col-12"><div class="scp-card p-3">
+                  <div class="table-header">Export</div>
+                  <div class="d-flex gap-2"><button class="sq-btn"><i class="fa-solid fa-file-pdf"></i> PDF</button><button class="sq-btn"><i class="fa-solid fa-file-excel"></i> Excel</button></div>
+                </div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="page d-none" id="page-reports" role="tabpanel">
+          <div class="scp-card p-3 mb-3">
+            <ul class="nav nav-pills" role="tablist">
+              <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#rep-project" type="button">Project Report</button></li>
+              <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#rep-employee" type="button">Employee Report</button></li>
+              <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#rep-financial" type="button">Finance Report</button></li>
+              <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#rep-client" type="button">Client Report</button></li>
+              <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#rep-builder" type="button">Custom Builder</button></li>
+            </ul>
+          </div>
+          <div class="tab-content">
+            <!-- Project Report -->
+            <div class="tab-pane fade show active" id="rep-project">
+              <div class="scp-card p-3 mb-3 d-flex gap-2 justify-content-between align-items-center">
+                <div class="d-flex flex-nowrap gap-2 align-items-center toolbar-scroll">
+                  <div class="input-group" style="min-width:260px"><span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span><input id="repProjSearch" type="search" class="form-control" placeholder="Search project name/ID"></div>
+                  <select id="repProjStatus" class="form-select" style="min-width:160px"><option value="">All Status</option><option>In Progress</option><option>Completed</option><option>On Hold</option></select>
+                  <select id="repProjClient" class="form-select" style="min-width:180px"><option value="">All Clients</option><option>TechCorp</option><option>StartupXYZ</option></select>
+                  <select id="repProjDept" class="form-select" style="min-width:160px"><option value="">All Departments</option><option>Development</option><option>Design</option><option>Marketing</option></select>
+                  <div class="d-flex align-items-center gap-2"><input id="repProjFrom" type="date" class="form-control"><span class="text-muted small">to</span><input id="repProjTo" type="date" class="form-control"></div>
+                </div>
+                <div class="d-flex gap-2">
+                  <button class="sq-btn"><i class="fa-solid fa-file-pdf"></i> PDF</button>
+                  <button class="sq-btn"><i class="fa-solid fa-file-excel"></i> Excel</button>
+                  <button class="sq-btn"><i class="fa-solid fa-file-csv"></i> CSV</button>
+                </div>
+              </div>
+              <div class="row g-3 mb-3">
+                <div class="col-md-4"><div class="scp-card p-3"><div class="text-muted small">Budget</div><div class="h5 m-0">$120,000</div></div></div>
+                <div class="col-md-4"><div class="scp-card p-3"><div class="text-muted small">Actual Spend</div><div class="h5 m-0">$92,500</div></div></div>
+                <div class="col-md-4"><div class="scp-card p-3"><div class="text-muted small">Profit</div><div class="h5 m-0 text-success">$27,500</div></div></div>
+              </div>
+              <div class="scp-card data-table">
+                <div class="table-header">Projects</div>
+                <table class="table" id="repProjectTable"><thead><tr><th>Project</th><th>Client</th><th>Start</th><th>End</th><th>Status</th><th>Budget</th><th>Actual</th><th>Profit</th><th>Assigned</th><th>Milestones %</th><th>Actions</th></tr></thead><tbody>
+                  <tr><td>E-commerce Platform</td><td>TechCorp</td><td>2025-06-10</td><td>2025-12-20</td><td><span class="status pending">In Progress</span></td><td>$60,000</td><td>$45,200</td><td>$14,800</td><td>6</td><td>72%</td><td class="text-nowrap"><button class="btn btn-sm btn-outline-secondary">View</button><button class="btn btn-sm btn-outline-primary ms-1">Export</button><button class="btn btn-sm btn-outline-dark ms-1">Print</button></td></tr>
+                </tbody></table>
+              </div>
+            </div>
+
+            <!-- Employee Report -->
+            <div class="tab-pane fade" id="rep-employee">
+              <div class="scp-card p-3 mb-3 d-flex gap-2 justify-content-between align-items-center">
+                <div class="d-flex flex-nowrap gap-2 align-items-center toolbar-scroll">
+                  <div class="input-group" style="min-width:260px"><span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span><input id="repEmpSearch" type="search" class="form-control" placeholder="Search employee name/ID"></div>
+                  <select id="repEmpDept" class="form-select" style="min-width:160px"><option value="">All Departments</option><option>Development</option><option>Design</option><option>Marketing</option><option>HR</option></select>
+                  <select id="repEmpStatus" class="form-select" style="min-width:160px"><option value="">All Status</option><option>Active</option><option>On Leave</option><option>Inactive</option></select>
+                  <div class="d-flex align-items-center gap-2"><input id="repEmpFrom" type="date" class="form-control"><span class="text-muted small">to</span><input id="repEmpTo" type="date" class="form-control"></div>
+                </div>
+                <div class="d-flex gap-2"><button class="sq-btn"><i class="fa-solid fa-file-pdf"></i> PDF</button><button class="sq-btn"><i class="fa-solid fa-file-excel"></i> Excel</button><button class="sq-btn"><i class="fa-solid fa-file-csv"></i> CSV</button></div>
+              </div>
+              <div class="scp-card data-table">
+                <div class="table-header">Employees</div>
+                <table class="table" id="repEmployeeTable"><thead><tr><th>Employee</th><th>ID</th><th>Department</th><th>Designation</th><th>Salary</th><th>Payment Status</th><th>Attendance</th><th>Projects</th><th>Tasks Done</th><th>Rating</th><th>Actions</th></tr></thead><tbody>
+                  <tr><td>Heshan Perera</td><td>EMP-001</td><td>Management</td><td>Manager</td><td>$1,650</td><td><span class="status active">Paid</span></td><td>96%</td><td>3</td><td>42</td><td>4.7</td><td class="text-nowrap"><button class="btn btn-sm btn-outline-secondary">View</button><button class="btn btn-sm btn-outline-primary ms-1">Export</button></td></tr>
+                </tbody></table>
+              </div>
+            </div>
+
+            <!-- Finance Report -->
+            <div class="tab-pane fade" id="rep-financial">
+              <div class="scp-card p-3 mb-3 d-flex gap-2 justify-content-between align-items-center">
+                <div class="d-flex flex-nowrap gap-2 align-items-center toolbar-scroll">
+                  <div class="d-flex align-items-center gap-2"><input id="repFinFrom" type="date" class="form-control"><span class="text-muted small">to</span><input id="repFinTo" type="date" class="form-control"></div>
+                  <select id="repFinClient" class="form-select" style="min-width:180px"><option value="">All Clients</option><option>TechCorp</option><option>StartupXYZ</option></select>
+                  <select id="repFinProject" class="form-select" style="min-width:200px"><option value="">All Projects</option><option>E-commerce Platform</option><option>Mobile App</option></select>
+                </div>
+                <div class="d-flex gap-2"><button class="sq-btn"><i class="fa-solid fa-file-pdf"></i> PDF</button><button class="sq-btn"><i class="fa-solid fa-file-excel"></i> Excel</button><button class="sq-btn"><i class="fa-solid fa-file-csv"></i> CSV</button></div>
+              </div>
+              <div class="row g-3 mb-3">
+                <div class="col-md-3"><div class="scp-card p-3"><div class="text-muted small">Total Revenue</div><div class="h5 m-0">$89,200</div></div></div>
+                <div class="col-md-3"><div class="scp-card p-3"><div class="text-muted small">Total Expenses</div><div class="h5 m-0">$21,400</div></div></div>
+                <div class="col-md-3"><div class="scp-card p-3"><div class="text-muted small">Profit</div><div class="h5 m-0 text-success">$67,800</div></div></div>
+                <div class="col-md-3"><div class="scp-card p-3"><div class="text-muted small">Overdue Invoices</div><div class="h5 m-0 text-danger">2</div></div></div>
+                <div class="col-md-4"><div class="scp-card chart-card"><div class="chart-title">Revenue vs Expenses</div><canvas id="repFinBar"></canvas></div></div>
+                <div class="col-md-4"><div class="scp-card chart-card"><div class="chart-title">Collections Trend</div><canvas id="repFinLine"></canvas></div></div>
+                <div class="col-md-4"><div class="scp-card chart-card"><div class="chart-title">Expense Categories</div><canvas id="repFinPie"></canvas></div></div>
+              </div>
+              <div class="scp-card data-table">
+                <div class="table-header">Invoice-wise Payment Status</div>
+                <table class="table" id="repFinanceTable"><thead><tr><th>Invoice</th><th>Client</th><th>Project</th><th>Issue</th><th>Due</th><th>Amount</th><th>Status</th><th>Actions</th></tr></thead><tbody>
+                  <tr><td>INV-1001</td><td>TechCorp</td><td>E-commerce</td><td>2025-08-25</td><td>2025-09-25</td><td>$4,200</td><td><span class="status pending">Pending</span></td><td class="text-nowrap"><button class="btn btn-sm btn-outline-secondary">View</button><button class="btn btn-sm btn-outline-primary ms-1">Export</button></td></tr>
+                </tbody></table>
+              </div>
+            </div>
+
+            <!-- Client Report -->
+            <div class="tab-pane fade" id="rep-client">
+              <div class="scp-card p-3 mb-3 d-flex gap-2 justify-content-between align-items-center">
+                <div class="d-flex flex-nowrap gap-2 align-items-center toolbar-scroll">
+                  <div class="input-group" style="min-width:260px"><span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span><input id="repClientSearch" type="search" class="form-control" placeholder="Search client name/ID"></div>
+                  <select id="repClientActive" class="form-select" style="min-width:160px"><option value="">All</option><option>Active</option><option>Inactive</option></select>
+                  <select id="repClientPayStatus" class="form-select" style="min-width:180px"><option value="">Payment Status</option><option>Good Standing</option><option>Overdue</option></select>
+                </div>
+                <div class="d-flex gap-2"><button class="sq-btn"><i class="fa-solid fa-file-pdf"></i> PDF</button><button class="sq-btn"><i class="fa-solid fa-file-excel"></i> Excel</button><button class="sq-btn"><i class="fa-solid fa-file-csv"></i> CSV</button></div>
+              </div>
+              <div class="scp-card data-table">
+                <div class="table-header">Clients</div>
+                <table class="table" id="repClientTable"><thead><tr><th>Client</th><th>Client ID</th><th>Total Projects</th><th>Outstanding</th><th>Payment Summary</th><th>Last Interaction</th><th>Actions</th></tr></thead><tbody>
+                  <tr><td>TechCorp</td><td>CL-100</td><td>4</td><td>$1,200</td><td>Paid: 12 · Pending: 1 · Overdue: 1</td><td>2025-09-06</td><td class="text-nowrap"><button class="btn btn-sm btn-outline-secondary">View</button><button class="btn btn-sm btn-outline-primary ms-1">Export</button></td></tr>
+                </tbody></table>
+              </div>
+            </div>
+
+            <!-- Custom Report Builder -->
+            <div class="tab-pane fade" id="rep-builder">
+              <div class="scp-card p-3">
+                <form class="row g-3">
+                  <div class="col-md-4"><label class="form-label">Module</label><select class="form-select"><option>Project</option><option>Employee</option><option>Client</option><option>Finance</option></select></div>
+                  <div class="col-md-8"><label class="form-label">Fields</label><select class="form-select" multiple>
+                    <option>Project Name</option><option>Client</option><option>Status</option><option>Budget</option><option>Actual</option><option>Employee</option><option>Department</option><option>Invoice</option><option>Amount</option>
+                  </select></div>
+                  <div class="col-md-6"><label class="form-label">Date Range</label><div class="d-flex align-items-center gap-2"><input type="date" class="form-control"><span class="text-muted small">to</span><input type="date" class="form-control"></div></div>
+                  <div class="col-md-6"><label class="form-label">Filters</label><input type="text" class="form-control" placeholder="Status: In Progress; Dept: Development"></div>
+                  <div class="col-12 d-flex justify-content-end gap-2"><button class="btn btn-outline-secondary" type="reset">Reset</button><button class="btn btn-primary" type="submit">Run Report</button><button class="btn btn-success" type="button">Save Template</button></div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Files Management -->
+        <div class="page d-none" id="page-files" role="tabpanel">
+          <div class="scp-card p-3 mb-3 d-flex justify-content-between align-items-center">
+            <div class="d-flex gap-2 align-items-center"><button class="sq-btn"><i class="fa-solid fa-upload"></i> Upload</button><button class="sq-btn"><i class="fa-solid fa-folder-plus"></i> New Folder</button></div>
+            <div class="d-flex gap-2 align-items-center"><input type="search" class="form-control" placeholder="Search files"></div>
+          </div>
+          <div class="row g-3">
+            <div class="col-md-3"><div class="scp-card p-3 text-center"><i class="fa-solid fa-file-lines fa-2x text-primary"></i><div class="mt-2">SOW.pdf</div></div></div>
+            <div class="col-md-3"><div class="scp-card p-3 text-center"><i class="fa-solid fa-file-code fa-2x text-primary"></i><div class="mt-2">api.json</div></div></div>
+            <div class="col-md-3"><div class="scp-card p-3 text-center"><i class="fa-solid fa-file-word fa-2x text-primary"></i><div class="mt-2">Contract.docx</div></div></div>
+            <div class="col-md-3"><div class="scp-card p-3 text-center"><i class="fa-solid fa-file-image fa-2x text-primary"></i><div class="mt-2">Design.png</div></div></div>
+          </div>
+        </div>
+
+        <!-- Notifications Center -->
+        <div class="page d-none" id="page-notifications" role="tabpanel">
+          <div class="scp-card p-3 mb-3">
+            <div class="d-flex gap-2 align-items-center flex-wrap">
+              <select class="form-select" style="max-width:200px"><option>All</option><option>System</option><option>Project</option><option>Finance</option></select>
+              <select class="form-select" style="max-width:200px"><option>Any Status</option><option>Unread</option><option>Read</option></select>
+              <input type="search" class="form-control" placeholder="Search notifications">
+            </div>
+          </div>
+          <div class="scp-card p-0">
+            <ul class="notify-list p-3">
+              <li class="notify-item"><span class="badge"><i class="fa-solid fa-bell"></i></span><div><div class="fw-semibold">Invoice INV-1001 overdue</div><div class="text-muted small">Finance · 3h ago</div></div></li>
+              <li class="notify-item"><span class="badge"><i class="fa-solid fa-plus"></i></span><div><div class="fw-semibold">New client created: StartupXYZ</div><div class="text-muted small">Clients · 6h ago</div></div></li>
+              <li class="notify-item"><span class="badge"><i class="fa-solid fa-user-gear"></i></span><div><div class="fw-semibold">Role changed: Dewaka is now Senior Dev</div><div class="text-muted small">Users · 1d ago</div></div></li>
+            </ul>
+          </div>
+        </div>
+        <div class="page d-none" id="page-settings" role="tabpanel">
+          <div class="scp-card p-3 mb-3">
+            <ul class="nav nav-pills" role="tablist">
+              <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#set-company" type="button">Company</button></li>
+              <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#set-rbac" type="button">Roles & Permissions</button></li>
+              <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#set-integrations" type="button">Integrations</button></li>
+              <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#set-security" type="button">Security</button></li>
+              <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#set-audit" type="button">Audit Logs</button></li>
+            </ul>
+          </div>
+          <div class="tab-content">
+            <!-- Company -->
+            <div class="tab-pane fade show active" id="set-company">
+              <div class="scp-card p-3">
+                <form id="formCompany" class="row g-3">
+                  <div class="col-md-6"><label class="form-label">Company Name</label><input class="form-control" type="text" value="SoftCode Pro"></div>
+                  <div class="col-md-6"><label class="form-label">Tax ID</label><input class="form-control" type="text" placeholder="e.g. 123-456-789"></div>
+                  <div class="col-md-6"><label class="form-label">Email</label><input class="form-control" type="email" value="info@softcodepro.com"></div>
+                  <div class="col-md-6"><label class="form-label">Phone</label><input class="form-control" type="tel" placeholder="+94 77 123 4567"></div>
+                  <div class="col-12"><label class="form-label">Address</label><input class="form-control" type="text" placeholder="Street, City, Country"></div>
+                  <div class="col-md-4"><label class="form-label">Timezone</label><select class="form-select"><option>GMT+5:30 Asia/Colombo</option><option>GMT+5:30 Asia/Kolkata</option><option>GMT+0 UTC</option></select></div>
+                  <div class="col-md-4"><label class="form-label">Currency</label><select class="form-select"><option>USD</option><option>LKR</option><option>EUR</option></select></div>
+                  <div class="col-md-4"><label class="form-label">Language</label><select class="form-select"><option>English</option><option>Sinhala</option></select></div>
+                  <div class="col-md-6"><label class="form-label">Logo</label><input class="form-control" type="file" accept="image/*"></div>
+                  <div class="col-md-6"><label class="form-label">Website</label><input class="form-control" type="url" value="https://softcodepro.com"></div>
+                  <div class="col-12 d-flex justify-content-end gap-2"><button class="btn btn-outline-secondary" type="reset">Reset</button><button class="btn btn-primary" type="submit">Save</button></div>
+                </form>
+              </div>
+            </div>
+
+            <!-- Roles & Permissions (RBAC) -->
+            <div class="tab-pane fade" id="set-rbac">
+              <div class="scp-card p-3 mb-3 d-flex gap-2 justify-content-between align-items-center">
+                <div class="d-flex flex-wrap gap-2 align-items-center">
+                  <select id="rbacRole" class="form-select" style="min-width:200px"><option>Administrator</option><option>Manager</option><option>Staff</option><option>Viewer</option></select>
+                  <button class="sq-btn"><i class="fa-solid fa-plus"></i> New Role</button>
+                  <button class="sq-btn"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+                </div>
+              </div>
+              <div class="scp-card data-table">
+                <div class="table-header">Permissions Matrix</div>
+                <table class="table" id="rbacTable"><thead><tr><th>Module</th><th>View</th><th>Create</th><th>Edit</th><th>Delete</th><th>Export</th></tr></thead><tbody>
+                  <tr><td>Projects</td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox"></td><td><input type="checkbox" checked></td></tr>
+                  <tr><td>Employees</td><td><input type="checkbox" checked></td><td><input type="checkbox"></td><td><input type="checkbox" checked></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
+                  <tr><td>Clients</td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox"></td><td><input type="checkbox" checked></td></tr>
+                  <tr><td>Finance</td><td><input type="checkbox" checked></td><td><input type="checkbox"></td><td><input type="checkbox" checked></td><td><input type="checkbox"></td><td><input type="checkbox" checked></td></tr>
+                  <tr><td>Support</td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
+                </tbody></table>
+              </div>
+            </div>
+
+            <!-- Integrations -->
+            <div class="tab-pane fade" id="set-integrations">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="scp-card p-3">
+                    <div class="table-header">Email (SMTP)</div>
+                    <form class="row g-2">
+                      <div class="col-12"><label class="form-label">SMTP Host</label><input type="text" class="form-control" placeholder="smtp.mailserver.com"></div>
+                      <div class="col-md-6"><label class="form-label">Port</label><input type="number" class="form-control" value="587"></div>
+                      <div class="col-md-6"><label class="form-label">Encryption</label><select class="form-select"><option>STARTTLS</option><option>SSL/TLS</option><option>None</option></select></div>
+                      <div class="col-md-6"><label class="form-label">Username</label><input type="text" class="form-control"></div>
+                      <div class="col-md-6"><label class="form-label">Password</label><input type="password" class="form-control"></div>
+                      <div class="col-12 d-flex justify-content-end gap-2"><button class="btn btn-outline-secondary" type="button">Test</button><button class="btn btn-primary" type="submit">Save</button></div>
+                    </form>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="scp-card p-3">
+                    <div class="table-header">Payment Gateways</div>
+                    <form class="row g-2">
+                      <div class="col-12"><label class="form-label">Stripe API Key</label><input type="password" class="form-control" placeholder="sk_live_..."></div>
+                      <div class="col-12"><label class="form-label">PayPal Client ID</label><input type="text" class="form-control" placeholder="AbCdEf..."></div>
+                      <div class="col-12"><label class="form-label">Webhook URL</label><input type="url" class="form-control" placeholder="https://.../webhook"></div>
+                      <div class="col-12 d-flex justify-content-end gap-2"><button class="btn btn-outline-secondary" type="button">Test</button><button class="btn btn-primary" type="submit">Save</button></div>
+                    </form>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="scp-card p-3">
+                    <div class="table-header">Slack / Teams</div>
+                    <form class="row g-2">
+                      <div class="col-md-6"><label class="form-label">Slack Webhook</label><input type="url" class="form-control" placeholder="https://hooks.slack.com/..." /></div>
+                      <div class="col-md-6"><label class="form-label">MS Teams Webhook</label><input type="url" class="form-control" placeholder="https://outlook.office.com/webhook/..." /></div>
+                      <div class="col-12 d-flex justify-content-end gap-2"><button class="btn btn-outline-secondary" type="button">Send Test</button><button class="btn btn-primary" type="submit">Save</button></div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Security -->
+            <div class="tab-pane fade" id="set-security">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="scp-card p-3">
+                    <div class="table-header">Authentication</div>
+                    <div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="twofaToggle"><label class="form-check-label" for="twofaToggle">Enable Two-Factor Authentication (2FA)</label></div>
+                    <div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="passwordExpiry"><label class="form-check-label" for="passwordExpiry">Force password change every 90 days</label></div>
+                    <div class="mt-2"><label class="form-label">Session Timeout (minutes)</label><input type="number" class="form-control" value="30"></div>
+                    <div class="mt-2"><label class="form-label">Password Strength</label><select class="form-select"><option>Medium</option><option>Strong</option><option>Very Strong</option></select></div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="scp-card p-3">
+                    <div class="table-header">Backups & Retention</div>
+                    <div class="mt-2"><label class="form-label">Backup Schedule</label><select class="form-select"><option>Daily</option><option>Weekly</option><option>Monthly</option></select></div>
+                    <div class="mt-2"><label class="form-label">Retention (days)</label><input type="number" class="form-control" value="30"></div>
+                    <div class="mt-2 d-flex gap-2"><button class="btn btn-outline-secondary" type="button">Run Backup Now</button><button class="btn btn-outline-danger" type="button">Purge Old Logs</button></div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="scp-card p-3">
+                    <div class="table-header">API Keys</div>
+                    <div class="d-flex justify-content-end mb-2"><button class="sq-btn"><i class="fa-solid fa-key"></i> Generate New Key</button></div>
+                    <table class="table"><thead><tr><th>Key ID</th><th>Created</th><th>Last Used</th><th>Status</th><th>Actions</th></tr></thead><tbody>
+                      <tr><td>API-12345</td><td>2025-08-10</td><td>2025-09-07</td><td><span class="status active">Active</span></td><td class="text-nowrap"><button class="btn btn-sm btn-outline-secondary">Copy</button><button class="btn btn-sm btn-outline-danger ms-1">Revoke</button></td></tr>
+                    </tbody></table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Audit Logs -->
+            <div class="tab-pane fade" id="set-audit">
+              <div class="scp-card p-3 mb-3 d-flex gap-2 justify-content-between align-items-center">
+                <div class="d-flex flex-nowrap gap-2 align-items-center toolbar-scroll">
+                  <div class="input-group" style="min-width:260px"><span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span><input id="auditSearch" type="search" class="form-control" placeholder="Search user, action, entity"></div>
+                  <select id="auditUser" class="form-select" style="min-width:180px"><option value="">All Users</option><option>Heshan</option><option>Dewaka</option><option>Sachini</option></select>
+                  <select id="auditAction" class="form-select" style="min-width:160px"><option value="">All Actions</option><option>Create</option><option>Update</option><option>Delete</option><option>Login</option></select>
+                  <div class="d-flex align-items-center gap-2"><input id="auditFrom" type="date" class="form-control"><span class="text-muted small">to</span><input id="auditTo" type="date" class="form-control"></div>
+                </div>
+                <div class="d-flex gap-2"><button class="sq-btn"><i class="fa-solid fa-file-pdf"></i> PDF</button><button class="sq-btn"><i class="fa-solid fa-file-excel"></i> Excel</button><button class="sq-btn"><i class="fa-solid fa-file-csv"></i> CSV</button></div>
+              </div>
+              <div class="scp-card data-table">
+                <div class="table-header">Audit Log</div>
+                <table class="table" id="auditTable"><thead><tr><th>Time</th><th>User</th><th>Action</th><th>Entity</th><th>Details</th><th>IP</th></tr></thead><tbody>
+                  <tr><td>2025-09-07 10:12</td><td>Heshan</td><td>Update</td><td>Project INV-1001</td><td>Status changed to In Progress</td><td>192.168.1.12</td></tr>
+                  <tr><td>2025-09-07 09:44</td><td>Dewaka</td><td>Create</td><td>Task T-332</td><td>New task added to project</td><td>192.168.1.27</td></tr>
+                </tbody></table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Add Client Modal -->
+  <div class="modal fade" id="addClientModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add New Client</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="formAddClient" class="row g-3">
+            <!-- Left Column: Company & Contact -->
+            <div class="col-lg-6">
+              <div class="scp-card p-3 mb-3">
+                <h6 class="mb-3">Basic Information</h6>
+                <div class="mb-3">
+                  <label class="form-label">Company / Organization Name</label>
+                  <input type="text" class="form-control" name="company" required>
+                </div>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label">Client Full Name (Contact)</label>
+                    <input type="text" class="form-control" name="contact_name" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" class="form-control" name="email" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Phone Number</label>
+                    <input type="tel" class="form-control" name="phone" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Alternative Phone (optional)</label>
+                    <input type="tel" class="form-control" name="alt_phone">
+                  </div>
+                </div>
+              </div>
+
+              <div class="scp-card p-3">
+                <h6 class="mb-3">Address & Location</h6>
+                <div class="mb-3">
+                  <label class="form-label">Billing Address</label>
+                  <textarea class="form-control" rows="2" name="billing_address" required></textarea>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Office Address / Location</label>
+                  <textarea class="form-control" rows="2" name="office_address"></textarea>
+                </div>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label">Country</label>
+                    <input type="text" class="form-control" name="country" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">City</label>
+                    <input type="text" class="form-control" name="city" required>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Financial & Project -->
+            <div class="col-lg-6">
+              <div class="scp-card p-3 mb-3">
+                <h6 class="mb-3">Business / Project</h6>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label">Industry / Business Type</label>
+                    <input type="text" class="form-control" name="industry">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Assigned Account Manager</label>
+                    <input type="text" class="form-control" name="account_manager" placeholder="Employee name">
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label">Associated Projects</label>
+                    <input type="text" class="form-control" name="projects" placeholder="Project names (comma separated)">
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label">Preferred Communication</label>
+                    <select class="form-select" name="communication" required>
+                      <option>Email</option>
+                      <option>WhatsApp</option>
+                      <option>Phone</option>
+                      <option>Portal</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="scp-card p-3">
+                <h6 class="mb-3">Financial Details</h6>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label">Billing Terms</label>
+                    <select class="form-select" name="billing_terms">
+                      <option>Monthly</option>
+                      <option>Milestone</option>
+                      <option>On-demand</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Tax / VAT Number</label>
+                    <input type="text" class="form-control" name="tax_id">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Currency Preference</label>
+                    <select class="form-select" name="currency">
+                      <option>USD</option>
+                      <option>LKR</option>
+                      <option>EUR</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Payment Method</label>
+                    <select class="form-select" name="payment_method">
+                      <option>Bank</option>
+                      <option>Card</option>
+                      <option>PayPal</option>
+                      <option>Crypto</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Full width bottom: Documents & Notes -->
+            <div class="col-12">
+              <div class="scp-card p-3">
+                <h6 class="mb-3">Documents & Notes</h6>
+                <div class="row g-3">
+                  <div class="col-md-4">
+                    <label class="form-label">Company Registration</label>
+                    <input type="file" class="form-control" name="doc_registration" accept=".pdf,.jpg,.jpeg,.png">
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label">Contracts / Agreements</label>
+                    <input type="file" class="form-control" name="doc_contracts" multiple>
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label">NDAs</label>
+                    <input type="file" class="form-control" name="doc_ndas" multiple>
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label">Priority Level</label>
+                    <select class="form-select" name="priority">
+                      <option>Regular</option>
+                      <option>VIP</option>
+                      <option>Low priority</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label">Client Status</label>
+                    <select class="form-select" name="client_status">
+                      <option>Active</option>
+                      <option>Inactive</option>
+                      <option>Lead</option>
+                    </select>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label">Special Requirements / Remarks</label>
+                    <textarea class="form-control" rows="3" name="notes"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" form="formAddClient" class="btn btn-primary">Save Client</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="createProjectModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add / Manage Project</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="formCreateProject" class="row g-3">
+            <!-- Basic Information -->
+            <div class="col-12"><h6 class="mb-2">Basic Information</h6></div>
+            <div class="col-md-6">
+              <label class="form-label">Project Name</label>
+              <input type="text" class="form-control" required>
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">Project Code / ID</label>
+              <input type="text" class="form-control" placeholder="Auto-generate" disabled>
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">Project Type</label>
+              <select class="form-select">
+                <option>Web App</option>
+                <option>Mobile App</option>
+                <option>Software</option>
+                <option>Research</option>
+                <option>Maintenance</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Client</label>
+              <select class="form-select" required>
+                <option value="" selected disabled>Select client</option>
+                <option>TechCorp Inc.</option>
+                <option>StartupXYZ</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label class="form-label">Project Description</label>
+              <textarea class="form-control" rows="3" placeholder="Brief overview, objectives, scope"></textarea>
+            </div>
+
+            <!-- Timeline & Milestones -->
+            <div class="col-12 pt-2"><h6 class="mb-2">Timeline & Milestones</h6></div>
+            <div class="col-md-4"><label class="form-label">Start Date</label><input type="date" class="form-control"></div>
+            <div class="col-md-4"><label class="form-label">Expected End Date</label><input type="date" class="form-control"></div>
+            <div class="col-md-4"><label class="form-label">Actual End Date</label><input type="date" class="form-control"></div>
+            <div class="col-md-4"><label class="form-label">Project Phase</label>
+              <select class="form-select">
+                <option>Planning</option>
+                <option>Development</option>
+                <option>Testing</option>
+                <option>Deployment</option>
+                <option>Maintenance</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <label class="form-label m-0">Milestones</label>
+                <button type="button" id="addMilestoneBtn" class="btn btn-sm btn-outline-primary"><i class="fa-solid fa-plus"></i> Add Milestone</button>
+              </div>
+              <div id="milestonesList" class="row g-2">
+                <div class="col-12 d-flex gap-2 align-items-center milestone-row">
+                  <input type="text" class="form-control" placeholder="Milestone name">
+                  <input type="date" class="form-control" style="max-width: 220px;">
+                  <select class="form-select" style="max-width: 220px;">
+                    <option>Pending</option>
+                    <option>In Progress</option>
+                    <option>Completed</option>
+                  </select>
+                  <button type="button" class="btn btn-outline-danger btn-sm remove-milestone" aria-label="Remove"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Team & Assignment -->
+            <div class="col-12 pt-2"><h6 class="mb-2">Team & Assignment</h6></div>
+            <div class="col-md-4"><label class="form-label">Project Manager</label>
+              <select class="form-select">
+                <option value="" selected disabled>Select manager</option>
+                <option>Heshan Perera</option>
+                <option>Dewaka Silva</option>
+                <option>Sachini Fernando</option>
+              </select>
+            </div>
+            <div class="col-md-4"><label class="form-label">Team Members</label>
+              <select class="form-select" multiple>
+                <option>Heshan Perera</option>
+                <option>Dewaka Silva</option>
+                <option>Sachini Fernando</option>
+              </select>
+            </div>
+            <div class="col-md-4"><label class="form-label">Departments Involved</label>
+              <select class="form-select" multiple>
+                <option>Development</option>
+                <option>QA</option>
+                <option>Design</option>
+                <option>Marketing</option>
+                <option>Support</option>
+              </select>
+            </div>
+
+            <!-- Financials -->
+            <div class="col-12 pt-2"><h6 class="mb-2">Financials</h6></div>
+            <div class="col-md-3"><label class="form-label">Project Budget</label><input type="number" class="form-control" min="0" step="0.01"></div>
+            <div class="col-md-3"><label class="form-label">Currency</label><select class="form-select"><option>LKR</option><option>USD</option><option>EUR</option></select></div>
+            <div class="col-md-3"><label class="form-label">Payment Terms</label><select class="form-select"><option>Fixed</option><option>Hourly</option><option>Milestone-based</option></select></div>
+            <div class="col-md-3"><label class="form-label">Invoices Linked</label><select class="form-select"><option>No</option><option>Yes</option></select></div>
+            <div class="col-md-3"><label class="form-label">Expenses (est.)</label><input type="number" class="form-control" min="0" step="0.01"></div>
+
+            <!-- Deliverables & Files -->
+            <div class="col-12 pt-2"><h6 class="mb-2">Deliverables & Files</h6></div>
+            <div class="col-12"><label class="form-label">Key Deliverables</label><textarea class="form-control" rows="2" placeholder="Documents, modules, reports, features list"></textarea></div>
+            <div class="col-md-6"><label class="form-label">File Attachments</label><input type="file" class="form-control" multiple></div>
+            <div class="col-md-6"><label class="form-label">Project Tags / Categories</label><input type="text" class="form-control" placeholder="e.g., AI, E-commerce, Mobile"></div>
+
+            <!-- Status & Tracking -->
+            <div class="col-12 pt-2"><h6 class="mb-2">Status & Tracking</h6></div>
+            <div class="col-md-4"><label class="form-label">Current Status</label><select class="form-select"><option>Not Started</option><option>In Progress</option><option>On Hold</option><option>Completed</option><option>Cancelled</option></select></div>
+            <div class="col-md-4"><label class="form-label">Progress %</label><input type="number" class="form-control" min="0" max="100" step="1" value="0"></div>
+            <div class="col-md-4"><label class="form-label">Priority</label><select class="form-select"><option>Low</option><option>Medium</option><option>High</option><option>Critical</option></select></div>
+            <div class="col-12"><label class="form-label">Risks / Issues</label><textarea class="form-control" rows="2" placeholder="Optional notes"></textarea></div>
+
+            <!-- Communication -->
+            <div class="col-12 pt-2"><h6 class="mb-2">Communication</h6></div>
+            <div class="col-md-6"><label class="form-label">Client Communication Notes</label><textarea class="form-control" rows="2"></textarea></div>
+            <div class="col-md-6"><label class="form-label">Internal Notes</label><textarea class="form-control" rows="2"></textarea></div>
+            <div class="col-12"><label class="form-label">Meeting Records (links)</label><input type="text" class="form-control" placeholder="Link to calendar / logs"></div>
+
+            <!-- SLA & Links (optional) -->
+            <div class="col-md-4"><label class="form-label">SLA Tracking</label><select class="form-select"><option>None</option><option>Basic</option><option>Premium</option></select></div>
+            <div class="col-md-4"><label class="form-label">Linked Support Tickets</label><input type="text" class="form-control" placeholder="Ticket IDs (comma separated)"></div>
+            <div class="col-md-4"><label class="form-label">Feedback / Rating</label><select class="form-select"><option>N/A</option><option>⭐</option><option>⭐⭐</option><option>⭐⭐⭐</option><option>⭐⭐⭐⭐</option><option>⭐⭐⭐⭐⭐</option></select></div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" form="formCreateProject" class="btn btn-primary">Save Project</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="addEmployeeModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Employee</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="formAddEmployee" class="row g-3">
+            <!-- Basic Information -->
+            <div class="col-12"><h6 class="mb-2">Basic Information</h6></div>
+            <div class="col-md-4"><label class="form-label">First Name</label><input type="text" class="form-control" required></div>
+            <div class="col-md-4"><label class="form-label">Middle Name</label><input type="text" class="form-control"></div>
+            <div class="col-md-4"><label class="form-label">Last Name</label><input type="text" class="form-control" required></div>
+            <div class="col-md-4"><label class="form-label">Profile Picture</label><input type="file" class="form-control" accept="image/*"></div>
+            <div class="col-md-4"><label class="form-label">Date of Birth</label><input type="date" class="form-control" required></div>
+            <div class="col-md-4"><label class="form-label">Gender</label><select class="form-select"><option>Male</option><option>Female</option><option>Other</option></select></div>
+            <div class="col-md-6"><label class="form-label">National ID / Passport / DL</label><input type="text" class="form-control" required></div>
+
+            <!-- Contact Information -->
+            <div class="col-12 pt-2"><h6 class="mb-2">Contact Information</h6></div>
+            <div class="col-md-6"><label class="form-label">Company Email</label><input type="email" class="form-control" required></div>
+            <div class="col-md-6"><label class="form-label">Personal Email</label><input type="email" class="form-control"></div>
+            <div class="col-md-4"><label class="form-label">Mobile Number</label><input type="tel" class="form-control" required></div>
+            <div class="col-md-4"><label class="form-label">Emergency Contact</label><input type="tel" class="form-control" required></div>
+            <div class="col-md-4"><label class="form-label">Work Location</label><select class="form-select"><option>Onsite</option><option>Remote</option><option>Hybrid</option></select></div>
+            <div class="col-md-6"><label class="form-label">Current Address</label><input type="text" class="form-control" required></div>
+            <div class="col-md-6"><label class="form-label">Permanent Address</label><input type="text" class="form-control"></div>
+
+            <!-- Job Information -->
+            <div class="col-12 pt-2"><h6 class="mb-2">Job Information</h6></div>
+            <div class="col-md-3"><label class="form-label">Employee ID</label><input type="text" class="form-control" placeholder="Auto-generated" disabled></div>
+            <div class="col-md-3"><label class="form-label">Department</label><select class="form-select"><option>Development</option><option>Design</option><option>Marketing</option><option>HR</option><option>Finance</option></select></div>
+            <div class="col-md-3"><label class="form-label">Designation / Title</label><input type="text" class="form-control" placeholder="Software Engineer" required></div>
+            <div class="col-md-3"><label class="form-label">Employment Type</label><select class="form-select"><option>Full-time</option><option>Part-time</option><option>Contract</option><option>Intern</option></select></div>
+            <div class="col-md-3"><label class="form-label">Date of Joining</label><input type="date" class="form-control" required></div>
+            <div class="col-md-3"><label class="form-label">Probation / Confirmation</label><input type="date" class="form-control"></div>
+
+            <!-- Salary & Payroll -->
+            <div class="col-12 pt-2"><h6 class="mb-2">Salary & Payroll</h6></div>
+            <div class="col-md-4"><label class="form-label">Salary / Hourly Rate</label><input type="number" class="form-control" min="0" step="0.01" required></div>
+            <div class="col-md-4"><label class="form-label">Bank Name</label><input type="text" class="form-control"></div>
+            <div class="col-md-4"><label class="form-label">Account Number</label><input type="text" class="form-control"></div>
+            <div class="col-md-4"><label class="form-label">Branch</label><input type="text" class="form-control"></div>
+            <div class="col-md-4"><label class="form-label">Tax ID</label><input type="text" class="form-control"></div>
+            <div class="col-md-4"><label class="form-label">Allowances / Benefits</label><input type="text" class="form-control" placeholder="Transport, Meal, etc."></div>
+
+            <!-- Login & System Access -->
+            <div class="col-12 pt-2"><h6 class="mb-2">Login & System Access</h6></div>
+            <div class="col-md-4"><label class="form-label">Company Email / Username</label><input type="text" class="form-control" required></div>
+            <div class="col-md-4"><label class="form-label">Temporary Password</label><input type="text" class="form-control" placeholder="Will be reset on first login" required></div>
+            <div class="col-md-4"><label class="form-label">Role</label><select class="form-select"><option>Admin</option><option>Manager</option><option>Staff</option><option>Intern</option></select></div>
+            <div class="col-12"><label class="form-label">Permissions / Module Access</label><input type="text" class="form-control" placeholder="e.g., Projects: Read/Write; Finance: Read"></div>
+
+            <!-- Additional Details -->
+            <div class="col-12 pt-2"><h6 class="mb-2">Additional Details</h6></div>
+            <div class="col-md-6"><label class="form-label">Skills & Certifications</label><input type="text" class="form-control" placeholder="React, AWS, PMP"></div>
+            <div class="col-md-6"><label class="form-label">Previous Experience</label><input type="text" class="form-control" placeholder="Company / Years (optional)"></div>
+            <div class="col-12"><label class="form-label">Notes / Remarks</label><textarea class="form-control" rows="3"></textarea></div>
+            <div class="col-md-4"><label class="form-label">Status</label><select class="form-select"><option>Active</option><option>On Leave</option><option>Resigned</option><option>Terminated</option></select></div>
+            <div class="col-md-4"><label class="form-label">CV / Resume</label><input type="file" class="form-control" accept=".pdf,.doc,.docx"></div>
+            <div class="col-md-4"><label class="form-label">Offer Letter</label><input type="file" class="form-control" accept=".pdf"></div>
+            <div class="col-md-6"><label class="form-label">NIC / ID Scan</label><input type="file" class="form-control" accept=".pdf,.jpg,.jpeg,.png"></div>
+            <div class="col-md-6"><label class="form-label">Certificates (multiple)</label><input type="file" class="form-control" accept=".pdf,.jpg,.jpeg,.png" multiple></div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" form="formAddEmployee" class="btn btn-primary">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="addInvoiceModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Invoice</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="formAddInvoice" class="row g-3">
+            <div class="col-6"><label class="form-label">Invoice #</label><input type="text" class="form-control" required></div>
+            <div class="col-6"><label class="form-label">Client</label><input type="text" class="form-control" required></div>
+            <div class="col-6"><label class="form-label">Amount</label><input type="number" class="form-control" min="0" required></div>
+            <div class="col-6"><label class="form-label">Due Date</label><input type="date" class="form-control" required></div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" form="formAddInvoice" class="btn btn-primary">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Client Management Modals (placed at end of body for correct stacking and events) -->
+  <div class="modal fade" id="modalPreferredCommunication" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Preferred Communication</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          
+          <div class="mb-3">
+            <label class="form-label">Communication Method</label>
+            <select class="form-select" id="pcMethod">
+              <option>Email</option>
+              <option>Phone</option>
+              <option>WhatsApp</option>
+              <option>Slack</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Notes</label>
+            <input type="text" class="form-control" id="pcNotes" placeholder="Optional note">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa-solid fa-trash"></i> Delete</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalBillingTerms" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Billing Terms</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          
+          <div class="mb-3">
+            <label class="form-label">Billing Term</label>
+            <select class="form-select" id="btTerm">
+              <option>Monthly</option>
+              <option>Net 30</option>
+              <option>Net 45</option>
+              <option>Net 60</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Billing Term</label>
+            <input type="number" class="form-control" id="btCustomDays" min="0" placeholder="e.g. Monthly">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa-solid fa-trash"></i> Delete</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalCurrency" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Currency</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+         
+          <div class="mb-3">
+            <label class="form-label">Currency</label>
+            <select class="form-select" id="currencySelect">
+              <option value="USD">USD - US Dollar</option>
+              <option value="LKR">LKR - Sri Lankan Rupee</option>
+              <option value="EUR">EUR - Euro</option>
+              <option value="GBP">GBP - British Pound</option>
+              <option value="AUD">AUD - Australian Dollar</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Currency</label>
+            <input type="number" class="form-control" id="btCustomDays" min="0" placeholder="e.g. USD">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa-solid fa-trash"></i> Delete</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalPaymentMethod" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Payment Method</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+         
+          <div class="mb-3">
+            <label class="form-label">Method</label>
+            <select class="form-select" id="pmMethod">
+              <option>Bank Transfer</option>
+              <option>Credit Card</option>
+              <option>PayPal</option>
+              <option>Stripe</option>
+              <option>Cash</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Method</label>
+            <input type="text" class="form-control" id="pmReference" placeholder="e.g. Creadit Card">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa-solid fa-trash"></i> Delete</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalPriority" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Priority Level</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+         
+          <div class="mb-3">
+            <label class="form-label">Priority</label>
+            <select class="form-select" id="prioLevel">
+              <option>Low</option>
+              <option>Medium</option>
+              <option>High</option>
+              <option>VIP</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Priority</label>
+            <input type="text" class="form-control" id="prioNotes" placeholder="Priority Level">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa-solid fa-trash"></i> Delete</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalClientStatus" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Client Status</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          
+          <div class="mb-3">
+            <label class="form-label">Status</label>
+            <select class="form-select" id="clientStatus">
+              <option>Active</option>
+              <option>Pending</option>
+              <option>Inactive</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Status</label>
+            <input type="text" class="form-control" id="statusReason" placeholder="Status">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa-solid fa-trash"></i> Delete</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Employee Management Modals (Users page) -->
+  <div class="modal fade" id="modalEmpGender" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Gender</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Gender</label>
+            <select class="form-select" id="empGenderSelect">
+              <option>Male</option>
+              <option>Female</option>
+              <option>Other</option>
+              <option>Prefer not to say</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Notes</label>
+            <input type="text" class="form-control" id="empGenderNote" placeholder="Optional note">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa-solid fa-trash"></i> Delete</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalEmpWorkLocation" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Work Location</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Location</label>
+            <select class="form-select" id="empWorkLocation">
+              <option>Onsite</option>
+              <option>Remote</option>
+              <option>Hybrid</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Detail</label>
+            <input type="text" class="form-control" id="empWorkLocationDetail" placeholder="e.g., Colombo HQ / WFH">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa-solid fa-trash"></i> Delete</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalEmpEmployment" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Employment</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Type</label>
+            <select class="form-select" id="empEmploymentType">
+              <option>Full-time</option>
+              <option>Part-time</option>
+              <option>Contract</option>
+              <option>Intern</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Reference</label>
+            <input type="text" class="form-control" id="empEmploymentRef" placeholder="e.g., contract # or duration">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa-solid fa-trash"></i> Delete</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalEmpDepartment" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Department</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Department</label>
+            <select class="form-select" id="empDepartment">
+              <option>Development</option>
+              <option>Design</option>
+              <option>QA</option>
+              <option>Marketing</option>
+              <option>HR</option>
+              <option>Finance</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Notes</label>
+            <input type="text" class="form-control" id="empDepartmentNote" placeholder="Optional">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa-solid fa-trash"></i> Delete</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalEmpStatus" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Status</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Status</label>
+            <select class="form-select" id="empStatus">
+              <option>Active</option>
+              <option>On Leave</option>
+              <option>Resigned</option>
+              <option>Terminated</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Reason</label>
+            <input type="text" class="form-control" id="empStatusReason" placeholder="Optional reason">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa-solid fa-trash"></i> Delete</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalEmpRole" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Role</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Role</label>
+            <select class="form-select" id="empRole">
+              <option>Admin</option>
+              <option>Manager</option>
+              <option>Developer</option>
+              <option>Designer</option>
+              <option>Tester</option>
+              <option>Finance</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Notes</label>
+            <input type="text" class="form-control" id="empRoleNote" placeholder="Optional">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa-solid fa-trash"></i> Delete</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalEmpPerformance" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Performance</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">KPI Score</label>
+            <select class="form-select" id="empKpiScore">
+              <option>60</option>
+              <option>70</option>
+              <option>80</option>
+              <option>90</option>
+              <option>100</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Comment</label>
+            <input type="text" class="form-control" id="empKpiComment" placeholder="Optional comment">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa-solid fa-trash"></i> Delete</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project Advanced Setting Modals -->
+  <div class="modal fade" id="modalProjType" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Project Type</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Type</label>
+            <select class="form-select" id="projType">
+              <option>Web App</option>
+              <option>Mobile App</option>
+              <option>Software</option>
+              <option>Research</option>
+              <option>Maintenance</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Notes</label>
+            <input type="text" class="form-control" id="projTypeNote" placeholder="Optional">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa-solid fa-trash"></i> Delete</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalProjPhase" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Project Phase</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Phase</label>
+            <select class="form-select" id="projPhase">
+              <option>Planning</option>
+              <option>Development</option>
+              <option>Testing</option>
+              <option>Deployment</option>
+              <option>Maintenance</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Comment</label>
+            <input type="text" class="form-control" id="projPhaseComment" placeholder="Optional">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa-solid fa-trash"></i> Delete</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalProjPaymentTerms" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Payment Terms</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Terms</label>
+            <select class="form-select" id="projPaymentTerms">
+              <option>Fixed</option>
+              <option>Hourly</option>
+              <option>Milestone-based</option>
+              <option>Net 15</option>
+              <option>Net 30</option>
+              <option>Net 45</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Detail</label>
+            <input type="text" class="form-control" id="projPaymentDetail" placeholder="Optional">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa-solid fa-trash"></i> Delete</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalProjStatus" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Current Status</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Status</label>
+            <select class="form-select" id="projStatus">
+              <option>Not Started</option>
+              <option>In Progress</option>
+              <option>On Hold</option>
+              <option>Completed</option>
+              <option>Cancelled</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Reason</label>
+            <input type="text" class="form-control" id="projStatusReason" placeholder="Optional reason">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa-solid fa-trash"></i> Delete</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalProjRating" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Rating</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Rating</label>
+            <select class="form-select" id="projRating">
+              <option>⭐</option>
+              <option>⭐⭐</option>
+              <option>⭐⭐⭐</option>
+              <option>⭐⭐⭐⭐</option>
+              <option>⭐⭐⭐⭐⭐</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Comment</label>
+            <input type="text" class="form-control" id="projRatingComment" placeholder="Optional comment">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa-solid fa-trash"></i> Delete</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalProjPriority" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Priority</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Priority</label>
+            <select class="form-select" id="projPriority">
+              <option>Low</option>
+              <option>Medium</option>
+              <option>High</option>
+              <option>Critical</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Notes</label>
+            <input type="text" class="form-control" id="projPriorityNote" placeholder="Optional">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa-solid fa-trash"></i> Delete</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalProjSla" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">SLA Tracking</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">SLA</label>
+            <select class="form-select" id="projSla">
+              <option>None</option>
+              <option>Basic</option>
+              <option>Premium</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Link/Reference</label>
+            <input type="text" class="form-control" id="projSlaRef" placeholder="Optional">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa-solid fa-trash"></i> Delete</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.2/Sortable.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="analytics-charts.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
